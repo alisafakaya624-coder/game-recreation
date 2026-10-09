@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#073447"><link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' rx='22' fill='%23063146'/%3E%3Cpath d='M20 60Q50 5 80 60Q50 92 20 60' fill='%23efbd65'/%3E%3C/svg%3E"><title>Subnautica · Submarine Survival</title><link rel="stylesheet" href="style.css"></head>
+<body>
+ <canvas id="ocean" aria-label="First-person underwater game"></canvas>
+ <div id="vignette"></div><div id="damage"></div><div id="surface-drops"></div>
+ <div id="loading"><div class="loading-mark">SUB<span>NAUTICA</span></div><div class="load-line"><i></i></div><p>INITIALIZING PLANETARY ENVIRONMENT</p><small id="load-message">Preparing the shallows</small></div>
+ <main id="main-menu" class="hidden">
+  <div class="menu-top"><span class="alterra">△ ALTERRA</span><span>4546B <i></i> UNCHARTED OCEAN PLANET</span></div>
+  <div class="title-group"><p class="eyebrow">SUBMARINE SURVIVAL DEMO</p><h1>SUB<span>NAUTICA</span></h1><p class="menu-tagline">Your submarine. An open ocean.<br>Something enormous is following you.</p></div>
+  <nav class="main-actions"><button id="play-demo" class="primary">Play submarine demo <span>↗</span></button><button id="resume-demo">Resume demo <span>→</span></button><button id="new-game">Survival expedition <span>↗</span></button><button id="continue-game">Load game <span>→</span></button><button id="menu-settings">Options <span>→</span></button><button id="menu-coverage">Build & reference notes <span>↗</span></button></nav>
+  <div class="menu-bottom"><div class="audio-prompt"><span class="headphone-icon">◖◗</span><div>Listen closely.<small>Spatial audio · Headphones recommended</small></div></div><p>UNOFFICIAL BROWSER ADAPTATION <span>Original PC 1.0 reference · Replacement assets</span></p><small>SUBMARINE DEMO 0.2</small></div>
+ </main>
+ <div id="hud" class="hidden">
+  <div class="depth-cluster"><div id="compass">N</div><div class="depth"><b id="depth-value">5</b><span>m</span><small id="depth-limit"></small></div><div class="depth-line"></div><div class="environment-reading"><span id="temperature">24°C</span><span id="power-reading">O₂ ENVIRONMENT</span></div></div>
+  <div id="objective"><p>PERSONAL LOG <span>01</span></p><strong id="objective-title">A signal in the static</strong><small id="objective-hint">Tab to open your PDA</small></div>
+  <div id="beacons"></div><div id="crosshair"><i></i></div><div id="interaction"></div><div id="scan-progress" class="hidden"><span>SCANNING</span><div><i></i></div><b>0%</b></div>
+  <div id="survival"><div class="oxygen"><svg viewBox="0 0 110 110"><circle class="meter-track" cx="55" cy="55" r="48"/><circle id="oxygen-ring" cx="55" cy="55" r="48"/></svg><div><small>O₂</small><b id="oxygen-value">45</b><span id="oxygen-max">/ 45</span></div></div><div class="vitals"><div title="Health"><i class="heart">♥</i><b id="health-value">100</b><span><i id="health-bar"></i></span></div><div title="Food"><i class="food-symbol">◒</i><b id="food-value">85</b><span><i id="food-bar"></i></span></div><div title="Water"><i class="water-symbol">♦</i><b id="water-value">80</b><span><i id="water-bar"></i></span></div></div></div>
+  <div id="demo-cracks"></div><div id="demo-hydrophone"></div><div id="demo-console"></div><div id="quickslots"></div><div id="vehicle-status" class="hidden"></div><div id="location"><small id="location-label">BIOME</small><b id="biome-name">SAFE SHALLOWS</b><span id="day-readout">DAY 01 · 08:42</span></div>
+  <div id="bottom-hints"><span><kbd>W A S D</kbd> Move</span><span><kbd>SPACE</kbd> Ascend</span><span><kbd>C</kbd> Descend</span><span><kbd>TAB</kbd> PDA</span><span><kbd>H</kbd> Controls</span></div>
+  <div id="subtitle"></div><div id="notification"></div><div id="reticle-tip">Click to explore</div>
+ </div>
+ <div id="modal-layer" class="hidden"><section id="panel"></section></div>
+ <div id="toast-stack"></div>
+ <input id="import-file" type="file" accept=".json" hidden>
+ <noscript>This game requires JavaScript and a WebGL 2 browser.</noscript>
+  <script>
+ (function () {
+   const loading=document.getElementById('loading');
+   function message(title,text){
+     loading.style.cssText='position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#142b39;color:#edf4ef;padding:40px;font:17px/1.7 Arial,sans-serif;text-align:center';
+     loading.replaceChildren();
+     const heading=document.createElement('h1');heading.textContent=title;heading.style.cssText='font:700 32px/1.25 Arial,sans-serif;margin:0 0 20px';
+     const paragraph=document.createElement('p');paragraph.textContent=text;paragraph.style.maxWidth='680px';
+     const link=document.createElement('a');link.href='http://127.0.0.1:42800/';link.textContent='Open running game library';link.style.cssText='color:#c8f37b;margin-top:20px;text-decoration:underline';
+     loading.append(heading,paragraph,link);
+   }
+   if(location.protocol==='file:'){
+     document.documentElement.dataset.bootState='launch-required';
+     message('Start with the launcher','Your browser blocks game modules opened directly as local files. Open the main game-pack folder and run START GAMES.cmd on Windows or START GAMES.command on Mac. Keep the launcher window open while playing.');
+     return;
+   }
+   import('./src/game.js').catch(error=>{document.documentElement.dataset.bootState='failed';message('The game could not start','Extract the entire game pack and run its launcher. '+error.message);console.error(error);});
+ }());
+ </script>
+</body></html>

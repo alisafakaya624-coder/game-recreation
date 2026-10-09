@@ -1,0 +1,23 @@
+GPT 6 ASTRA - AIPILLED GAME EXPERIMENTS
+
+1. Extract the entire ZIP into a normal folder.
+2. Double-click START GAMES.cmd.
+3. Choose Elden Ring, Subnautica or Fortnite in your browser.
+
+Keep the launcher window open while playing. Close it when finished.
+Keep the game-files folder beside the launcher. Do not open index.html directly.
+No Node.js installation, npm install, account or API key is needed.
+Game assets are included for offline play. Keyboard and mouse required.
+Use a desktop browser with WebGL 2 and hardware acceleration enabled.
+Allow several seconds for each game to load. Press Escape to release the mouse.
+Use browser Back to return to the library. Controls are in Controls & notes.
+
+If the browser does not open, copy the local address from the launcher window.
+Requires Windows x64.
+
+Saves and settings stay in your browser. Export saves before clearing browser
+data or changing browsers. Changing the server port uses a different save area.
+
+These are unofficial, simplified fan adaptations. Coverage and asset credits
+are included under game-files in each game's folder. Third-party licenses are
+included with their files. There is no online multiplayer.

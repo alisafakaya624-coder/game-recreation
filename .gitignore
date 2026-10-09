@@ -1,0 +1,14 @@
+# vendored Node.js runtime (89 MB) — indirilebilir, repoda tutulmaz.
+# kaynak + sha256: games/gpt-6-astra/game-files/launcher/runtime/SOURCES.json
+games/gpt-6-astra/game-files/launcher/runtime/
+
+# calisma artiklari
+*.log
+*.tmp
+*.bak
+.DS_Store
+Thumbs.db
+
+# yerel ayarlar
+settings.json
+node_modules/

@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="theme-color" content="#245688"><title>Fortnite • Chapter One</title>
+ <meta name="description" content="A local playable browser reconstruction of the original Chapter 1 Season 3 island.">
+ <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+ <canvas id="game" tabindex="0" aria-label="Third person battle royale game. Click to capture mouse. Press Escape to release."></canvas>
+ <div id="loading"><div class="load-brand">FORTNITE</div><div class="load-sub">BATTLE ROYALE</div><div class="loading-bottom"><b>CHAPTER 1 <span>SEASON 3</span></b><h2 id="load-label">Preparing the island</h2><div class="load-track"><i id="load-progress"></i></div><p>Build cover. Find high ground. Stay inside the storm.</p><small>LOCAL BROWSER RECONSTRUCTION · ORIGINAL 2018 REFERENCE</small></div></div>
+ <div id="lobby" class="hidden">
+  <header><div class="brand">FORTNITE<small>BATTLE ROYALE</small></div><nav aria-label="Main navigation"><button class="nav active" data-panel="lobby">LOBBY</button><button class="nav" data-panel="battlepass">BATTLE PASS</button><button class="nav" data-panel="challenges">CHALLENGES</button><button class="nav" data-panel="locker">LOCKER</button><button class="nav" data-panel="shop">ITEM SHOP</button><button class="nav" data-panel="profile">PROFILE</button></nav><button class="settings-button" data-action="settings" aria-label="Settings">⚙</button></header>
+  <div class="season-panel"><div class="eyebrow">CHAPTER ONE</div><h1>SEASON 3</h1><div class="level-row"><span>LVL <b id="level">1</b></span><span id="xp-label">0 / 1,000</span></div><div class="xp-track"><i id="xp"></i></div><p class="pass-label">BATTLE PASS <b>TIER 1</b></p><hr><h3>DAILY CHALLENGES</h3><div class="challenge"><span>Play a match</span><b id="challenge-match">0 / 1</b></div><div class="challenge"><span>Search treasure chests</span><b id="challenge-chests">0 / 3</b></div><div class="challenge"><span>Eliminate opponents</span><b id="challenge-elims">0 / 5</b></div><div class="island-card"><span>THE ORIGINAL ISLAND</span><h2>WHERE IT<br>ALL BEGAN.</h2><button data-action="map">VIEW ISLAND <span>↗</span></button></div></div>
+  <div class="player-name"><div class="name-tag">Player <span>✓</span></div><div>NOT READY</div></div>
+  <div class="lobby-note"><b>SOLO. YOUR ISLAND. YOUR RULES.</b><span>Local bots · Building enabled</span></div>
+  <div class="play-panel"><div class="mode-card"><div><span id="mode-label">SOLO</span><small id="mode-description">BATTLE ROYALE · 99 LOCAL BOTS</small></div><button data-action="mode" aria-label="Change game mode">CHANGE</button></div><button id="play" class="yellow-button">PLAY <span>➜</span></button></div>
+  <footer><span>v3.1.0 REFERENCE · UNOFFICIAL FAN RECONSTRUCTION</span><div><button data-action="controls">CONTROLS</button><button data-action="coverage">FEATURE COVERAGE</button><button data-action="fullscreen">FULL SCREEN</button></div></footer>
+ </div>
+ <div id="hud" class="hidden">
+  <div class="player-hud"><b>Player</b><span>✦</span><i></i></div>
+  <div id="compass"></div>
+  <div class="minimap-wrap"><canvas id="minimap" width="230" height="230"></canvas><span id="location-mini">TILTED TOWERS</span><div class="match-stats"><span id="storm-time">◷ 3:00</span><span>♟ <b id="alive">100</b></span><span>⌖ <b id="kills">0</b></span></div></div>
+  <div id="phase-message"></div><div id="location-banner"></div>
+  <div id="crosshair"><i></i><b></b><span></span><em></em><u></u></div><div id="scope" class="hidden"></div><div id="hitmarker"></div>
+  <div id="interaction"></div><div id="action-progress"></div><div id="damage-vignette"></div><div id="storm-vignette"></div>
+  <div id="killfeed"></div><div id="elimination"></div><div id="notifications" aria-live="polite"></div><div id="damage-numbers"></div>
+  <div class="health-wrap"><div id="ammo-count"><b>30</b><span>  /  90</span></div><div class="meter shield"><span>◈</span><div><i id="shield-fill"></i><b id="shield-value">0</b></div></div><div class="meter health"><span>✚</span><div><i id="health-fill"></i><b id="health-value">100</b></div></div></div>
+  <div class="inventory-hud"><div class="resources"><span><i>▰</i><b id="wood-count">0</b></span><span><i>▦</i><b id="brick-count">0</b></span><span><i>▥</i><b id="metal-count">0</b></span></div><div id="build-bar"><span><kbd>Q</kbd> BUILD</span><button data-build="wall"><kbd>F1</kbd>▥</button><button data-build="floor"><kbd>F2</kbd>▱</button><button data-build="ramp"><kbd>F3</kbd>◩</button><button data-build="roof"><kbd>F4</kbd>◇</button></div><div id="hotbar"></div><div id="weapon-name">PICKAXE</div></div>
+  <div id="build-help" class="hidden"><b>WOOD</b><span>10 MATERIALS</span><div><kbd>LMB</kbd> Build <kbd>R</kbd> Rotate <kbd>RMB</kbd> Material <kbd>G</kbd> Edit</div></div>
+  <div id="bottom-controls"><kbd>M</kbd> Map <kbd>Tab</kbd> Inventory <kbd>Esc</kbd> Menu</div><div id="fps"></div><button id="capture-mouse" class="hidden">CLICK TO PLAY <small>WASD to move · Mouse to look</small></button>
+ </div>
+ <div id="map-overlay" class="overlay hidden"><div class="map-header"><h2>ISLAND MAP</h2><span id="map-meta">CHAPTER 1 · SEASON 3</span><button data-action="close">CLOSE <kbd>M</kbd></button></div><div class="map-body"><aside><h3>YOUR MATCH</h3><p id="map-status">Choose a place to land.</p><div class="map-legend"><span>● Safe zone</span><span>● Storm</span><span>◆ Your marker</span></div><p>Click the map to place a marker.</p><button id="clear-marker">REMOVE MARKER</button><div id="travel-section" class="hidden"><h3>EXPLORE ISLAND</h3><label for="travel-location">Travel to location</label><select id="travel-location"></select><button id="travel-button" class="yellow-button">TRAVEL</button></div></aside><div class="map-canvas-holder"><canvas id="map" width="1000" height="1000" aria-label="Chapter 1 island map. Click to mark destination."></canvas></div></div></div>
+ <div id="inventory-overlay" class="overlay hidden"><div class="map-header"><h2>INVENTORY</h2><button data-action="close">CLOSE <kbd>Tab</kbd></button></div><div class="inventory-body"><section><h3 id="item-title">EQUIPMENT</h3><p id="item-info">Select a slot. Drag to rearrange your equipment.</p><div id="inventory-slots"></div><button id="drop-item">DROP SELECTED ITEM</button></section><aside><h3>RESOURCES</h3><div id="inventory-resources"></div><h3>AMMUNITION</h3><div id="inventory-ammo"></div></aside></div></div>
+ <div id="modal" class="overlay hidden"><div class="modal-card"><button id="modal-close" class="close-x" aria-label="Close dialog">×</button><div id="modal-content"></div></div></div>
+ <div id="edit-overlay" class="overlay hidden"><div class="edit-card"><h2>EDIT STRUCTURE</h2><p>Select tiles to remove.</p><div id="edit-grid"></div><div class="edit-actions"><button id="edit-reset">RESET</button><button id="edit-confirm" class="yellow-button">CONFIRM <kbd>G</kbd></button><button id="edit-cancel">CANCEL</button></div><p id="edit-error"></p></div></div>
+ <div id="results" class="overlay hidden"><div id="victory-title"></div><div class="results-card"><div class="eyebrow" id="result-heading">MATCH RESULTS</div><h2 id="result-place">YOU PLACED #1</h2><div class="result-stats"><span>ELIMINATIONS<b id="result-kills">0</b></span><span>SURVIVAL TIME<b id="result-time">0:00</b></span><span>CHESTS SEARCHED<b id="result-chests">0</b></span></div><div class="result-buttons"><button id="play-again" class="yellow-button">PLAY AGAIN</button><button id="spectate">SPECTATE</button><button id="return-lobby">RETURN TO LOBBY</button></div></div></div>
+ <div id="spectating" class="hidden"><span>SPECTATING</span><b id="spectating-name"></b><button id="next-player">NEXT PLAYER</button><button id="spectator-return">RETURN TO LOBBY</button></div>
+ <div id="fatal-error" class="overlay hidden" role="alert"><div class="modal-card"><h2 id="fatal-heading">THE ISLAND COULDN'T LOAD</h2><p id="fatal-text"></p><p id="fatal-help">Extract the full game folder, run <strong>Launch.cmd</strong>, and use a browser with WebGL 2 enabled.</p><p id="launch-help" class="hidden">Requires Node.js. Keep the launcher window open while playing. If it prints a different address, use that address.</p><div class="launch-actions"><a id="open-running-game" class="yellow-button hidden" href="http://127.0.0.1:43184/">OPEN RUNNING GAME</a><button id="retry-load" onclick="location.reload()">TRY AGAIN</button></div><details id="fatal-details" class="hidden"><summary>Technical details</summary><pre id="fatal-stack"></pre></details></div></div>
+ <noscript><style>#loading{display:none}#fatal-error{display:flex}</style><p style="position:fixed;z-index:110;bottom:24px;left:24px">Enable JavaScript in your browser to play.</p></noscript>
+ <script>
+ // A classic, inline script also runs when this page is double-clicked.
+ // Module loading errors cannot be caught inside the module that failed to load.
+ (function () {
+   const byId = id => document.getElementById(id);
+   let failed = false;
+   function fail(error) {
+     if (failed) return;
+     failed = true;
+     document.documentElement.dataset.bootState = 'failed';
+     byId('fatal-text').textContent = 'The game could not finish starting. Check the launch instructions below, then try again.';
+     byId('fatal-stack').textContent = error?.stack || String(error);
+     byId('fatal-details').classList.remove('hidden');
+     byId('loading').classList.add('hidden');
+     byId('fatal-error').classList.remove('hidden');
+     console.error(error);
+   }
+   window.chapterOneBoot = {
+     fail,
+     ready() { if (!failed) document.documentElement.dataset.bootState = 'ready'; }
+   };
+   if (location.protocol === 'file:') {
+     document.documentElement.dataset.bootState = 'launch-required';
+     byId('fatal-heading').textContent = 'START WITH THE LAUNCHER';
+     byId('fatal-text').textContent = 'You opened index.html directly. Your browser blocks the game modules when opened as a local file.';
+     byId('fatal-help').textContent = 'Game pack: return to the main folder and run START GAMES.cmd on Windows or START GAMES.command on Mac. Standalone download: run Launch.cmd in this folder, or run node server.mjs.';
+     byId('launch-help').textContent = 'The viewer game pack includes its runtime. Only standalone downloads require Node.js. Keep the launcher window open while playing.';
+     byId('open-running-game').href = 'http://127.0.0.1:42800/';
+     byId('open-running-game').textContent = 'OPEN GAME LIBRARY';
+     byId('launch-help').classList.remove('hidden');
+     byId('open-running-game').classList.remove('hidden');
+     byId('retry-load').classList.add('hidden');
+     byId('loading').classList.add('hidden');
+     byId('fatal-error').classList.remove('hidden');
+     return;
+   }
+   document.documentElement.dataset.bootState = 'loading';
+   byId('load-label').textContent = 'Loading game code';
+   window.addEventListener('error', event => fail(event.error || event.message));
+   window.addEventListener('unhandledrejection', event => fail(event.reason));
+   import('./src/main.js').catch(fail);
+ }());
+ </script>
+</body></html>

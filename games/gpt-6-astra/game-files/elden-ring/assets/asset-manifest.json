@@ -1,0 +1,134 @@
+[
+  {
+    "id": "mossy_stone_wall",
+    "map": "Diffuse",
+    "path": "assets/mossy_stone_wall_diff_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mossy_stone_wall/mossy_stone_wall_diff_1k.jpg",
+    "license": "CC0-1.0",
+    "source": "https://polyhaven.com/a/mossy_stone_wall",
+    "bytes": 939649,
+    "md5Verified": true,
+    "licenseUrl": "https://polyhaven.com/license"
+  },
+  {
+    "id": "mossy_stone_wall",
+    "map": "nor_gl",
+    "path": "assets/mossy_stone_wall_nor_gl_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mossy_stone_wall/mossy_stone_wall_nor_gl_1k.jpg",
+    "license": "CC0-1.0",
+    "source": "https://polyhaven.com/a/mossy_stone_wall",
+    "bytes": 1282621,
+    "md5Verified": true,
+    "licenseUrl": "https://polyhaven.com/license"
+  },
+  {
+    "id": "mossy_stone_wall",
+    "map": "Rough",
+    "path": "assets/mossy_stone_wall_rough_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mossy_stone_wall/mossy_stone_wall_rough_1k.jpg",
+    "license": "CC0-1.0",
+    "source": "https://polyhaven.com/a/mossy_stone_wall",
+    "bytes": 476684,
+    "md5Verified": true,
+    "licenseUrl": "https://polyhaven.com/license"
+  },
+  {
+    "id": "aerial_grass_rock",
+    "map": "Diffuse",
+    "path": "assets/aerial_grass_rock_diff_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/aerial_grass_rock/aerial_grass_rock_diff_1k.jpg",
+    "license": "CC0-1.0",
+    "source": "https://polyhaven.com/a/aerial_grass_rock",
+    "bytes": 666655,
+    "md5Verified": true,
+    "licenseUrl": "https://polyhaven.com/license"
+  },
+  {
+    "id": "aerial_grass_rock",
+    "map": "nor_gl",
+    "path": "assets/aerial_grass_rock_nor_gl_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/aerial_grass_rock/aerial_grass_rock_nor_gl_1k.jpg",
+    "license": "CC0-1.0",
+    "source": "https://polyhaven.com/a/aerial_grass_rock",
+    "bytes": 904956,
+    "md5Verified": true,
+    "licenseUrl": "https://polyhaven.com/license"
+  },
+  {
+    "id": "aerial_grass_rock",
+    "map": "Rough",
+    "path": "assets/aerial_grass_rock_rough_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/aerial_grass_rock/aerial_grass_rock_rough_1k.jpg",
+    "license": "CC0-1.0",
+    "source": "https://polyhaven.com/a/aerial_grass_rock",
+    "bytes": 362214,
+    "md5Verified": true,
+    "licenseUrl": "https://polyhaven.com/license"
+  },
+  {
+    "id": "mossy_rock",
+    "map": "Diffuse",
+    "path": "assets/mossy_rock_diff_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mossy_rock/mossy_rock_diff_1k.jpg",
+    "license": "CC0-1.0",
+    "source": "https://polyhaven.com/a/mossy_rock",
+    "bytes": 1124438,
+    "md5Verified": true,
+    "licenseUrl": "https://polyhaven.com/license"
+  },
+  {
+    "id": "mossy_rock",
+    "map": "nor_gl",
+    "path": "assets/mossy_rock_nor_gl_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mossy_rock/mossy_rock_nor_gl_1k.jpg",
+    "license": "CC0-1.0",
+    "source": "https://polyhaven.com/a/mossy_rock",
+    "bytes": 995727,
+    "md5Verified": true,
+    "licenseUrl": "https://polyhaven.com/license"
+  },
+  {
+    "id": "mossy_rock",
+    "map": "Rough",
+    "path": "assets/mossy_rock_rough_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/mossy_rock/mossy_rock_rough_1k.jpg",
+    "license": "CC0-1.0",
+    "source": "https://polyhaven.com/a/mossy_rock",
+    "bytes": 780918,
+    "md5Verified": true,
+    "licenseUrl": "https://polyhaven.com/license"
+  },
+  {
+    "id": "bark_brown_02",
+    "map": "Diffuse",
+    "path": "assets/bark_brown_02_diff_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bark_brown_02/bark_brown_02_diff_1k.jpg",
+    "license": "CC0-1.0",
+    "source": "https://polyhaven.com/a/bark_brown_02",
+    "bytes": 659592,
+    "md5Verified": true,
+    "licenseUrl": "https://polyhaven.com/license"
+  },
+  {
+    "id": "bark_brown_02",
+    "map": "nor_gl",
+    "path": "assets/bark_brown_02_nor_gl_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bark_brown_02/bark_brown_02_nor_gl_1k.jpg",
+    "license": "CC0-1.0",
+    "source": "https://polyhaven.com/a/bark_brown_02",
+    "bytes": 1015623,
+    "md5Verified": true,
+    "licenseUrl": "https://polyhaven.com/license"
+  },
+  {
+    "id": "bark_brown_02",
+    "map": "Rough",
+    "path": "assets/bark_brown_02_rough_1k.jpg",
+    "url": "https://dl.polyhaven.org/file/ph-assets/Textures/jpg/1k/bark_brown_02/bark_brown_02_rough_1k.jpg",
+    "license": "CC0-1.0",
+    "source": "https://polyhaven.com/a/bark_brown_02",
+    "bytes": 337946,
+    "md5Verified": true,
+    "licenseUrl": "https://polyhaven.com/license"
+  }
+]

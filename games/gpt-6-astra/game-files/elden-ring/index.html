@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#151b19">
+  <meta name="description" content="An offline, playable browser interpretation of the Lands Between. See the included coverage report for fidelity and scope.">
+  <title>Elden Ring · The Lands Between</title>
+  <link rel="icon" href="data:,">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main id="game" aria-label="The Lands Between, third-person action adventure">
+    <canvas id="world" aria-label="Game world"></canvas>
+    <div id="vignette"></div><div id="grain"></div>
+    <div id="loading"><span class="tiny">THE LANDS BETWEEN</span><h1>ELDEN RING</h1><div class="loading-line"></div><p id="load-text">Following the guidance of grace…</p></div>
+    <div id="hud">
+      <div class="vitals"><div class="medallion">♜</div><div class="bars"><div class="bar hp"><i id="hp-bar"></i></div><div class="bar fp"><i id="fp-bar"></i></div><div class="bar stamina"><i id="st-bar"></i></div><div id="status-icons"></div></div></div>
+      <div id="compass"><div class="compass-line"></div><span id="compass-points">W　 ·　　N　　·　 E</span><div class="compass-marker">◇</div></div>
+      <div id="location-label"><span>LIMGRAVE</span><small id="sub-location">The First Step</small></div>
+      <div id="skill-label">✧ <span id="skill-name">Square Off</span></div>
+      <div id="quickslots"><div class="slot spell"><canvas id="spell-icon" width="96" height="96"></canvas><kbd>2</kbd></div><div class="slot shield"><canvas id="shield-icon" width="96" height="96"></canvas><kbd>Q</kbd></div><div class="slot weapon"><canvas id="weapon-icon" width="96" height="96"></canvas><kbd>1</kbd></div><div class="slot flask selected"><canvas id="flask-icon" width="96" height="96"></canvas><b id="flask-count">4</b><kbd>R</kbd></div><div class="item-name" id="quick-name">Flask of Crimson Tears</div></div>
+      <div id="runes"><span>◉</span><b id="rune-count">0</b></div>
+      <div id="objective"><span class="tiny">GUIDANCE OF GRACE</span><p id="objective-text">Find the Church of Elleh</p></div>
+      <div id="hint-strip"><span><kbd>W A S D</kbd> Move</span><span><kbd>SPACE</kbd> Dodge</span><span><kbd>E</kbd> Interact</span><span><kbd>M</kbd> Map</span><button id="help-button">Controls <kbd>H</kbd></button><button id="menu-button">Menu <kbd>ESC</kbd></button></div>
+      <div id="enemy-labels"></div><div id="lock-marker">•</div>
+      <div id="boss-hud"><span id="boss-name"></span><div class="boss-bar"><i id="boss-health"></i></div></div>
+      <div id="prompt"></div><div id="toast" role="status"></div>
+      <div id="discovery"><div></div><h2></h2><div></div></div>
+      <div id="death"><span>YOU DIED</span></div>
+    </div>
+    <section id="title" class="screen hidden"><div class="title-mark"><span>THE LANDS BETWEEN</span><h1>ELDEN RING</h1><div class="gold-rule"></div></div><div class="title-menu"><button id="continue">Continue</button><button id="new-game">New journey</button><button id="title-controls">Controls</button><button id="title-coverage">Build coverage</button></div><p class="title-foot">OFFLINE FAN INTERPRETATION · BASE GAME REFERENCE 1.10<br><span>Condensed geography and encounters. Original substitute assets.</span></p></section>
+    <section id="panel" class="hidden" aria-label="Game menu"><div class="panel-top"><div><span class="tiny" id="panel-eyebrow">THE LANDS BETWEEN</span><h2 id="panel-title">Equipment</h2></div><button id="close-panel" aria-label="Close menu">Close <kbd>ESC</kbd></button></div><nav id="panel-tabs"></nav><div id="panel-content"></div><footer id="panel-footer">Menus do not pause combat. Rest at a Site of Grace to find safety.</footer></section>
+    <div id="mobile-note">Keyboard and mouse required. Use a wider window for the full interface.</div>
+  </main>
+   <script>
+ (function () {
+   const loading=document.getElementById('loading');
+   function message(title,text){
+     loading.style.cssText='position:fixed;inset:0;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;background:#142b39;color:#edf4ef;padding:40px;font:17px/1.7 Arial,sans-serif;text-align:center';
+     loading.replaceChildren();
+     const heading=document.createElement('h1');heading.textContent=title;heading.style.cssText='font:700 32px/1.25 Arial,sans-serif;margin:0 0 20px';
+     const paragraph=document.createElement('p');paragraph.textContent=text;paragraph.style.maxWidth='680px';
+     const link=document.createElement('a');link.href='http://127.0.0.1:42800/';link.textContent='Open running game library';link.style.cssText='color:#c8f37b;margin-top:20px;text-decoration:underline';
+     loading.append(heading,paragraph,link);
+   }
+   if(location.protocol==='file:'){
+     document.documentElement.dataset.bootState='launch-required';
+     message('Start with the launcher','Your browser blocks game modules opened directly as local files. Open the main game-pack folder and run START GAMES.cmd on Windows or START GAMES.command on Mac. Keep the launcher window open while playing.');
+     return;
+   }
+   import('./src/main.js').catch(error=>{document.documentElement.dataset.bootState='failed';message('The game could not start','Extract the entire game pack and run its launcher. '+error.message);console.error(error);});
+ }());
+ </script>
+</body>
+</html>

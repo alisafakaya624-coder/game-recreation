@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en">
+<head>
+ <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="theme-color" content="#111719"><title>GPT 6 Astra · Game Library</title>
+ <meta name="description" content="Play the three AIPilled browser game experiments locally.">
+ <link rel="icon" href="data:,"><link rel="stylesheet" href="launcher/hub.css">
+</head>
+<body>
+ <header><a class="wordmark" href="./">AIPILLED<span>GAME EXPERIMENTS</span></a><span class="edition">GPT 6 ASTRA <span class="dot"></span> VIEWER EDITION</span></header>
+ <main>
+  <div class="intro"><div><p class="eyebrow">THE PLAYABLE BUILDS</p><h1>Choose your world.</h1></div><p class="platforms">Windows & macOS<br><span>Keyboard + mouse · Plays offline</span></p></div>
+  <section id="launch-instructions" class="launch-note" hidden aria-labelledby="launch-title"><div><h2 id="launch-title">Start the launcher first</h2><p>Extract the entire ZIP. On Windows, double-click <strong>START GAMES.cmd</strong>. On Mac, double-click <strong>START GAMES.command</strong>. The game library opens automatically.</p><p class="muted">Keep the launcher window open while playing. No Node.js installation is needed.</p></div><a class="launch-link" href="http://127.0.0.1:42800/">Open running library ↗</a></section>
+  <div class="games">
+   <article class="game-card elden"><a class="cover play-link" href="elden-ring/" aria-label="Play Elden Ring"><img src="launcher/previews/elden-ring.png" alt="The browser build's armored adventurer among stone ruins in Limgrave" width="1280" height="720"><span class="game-index">01 / THE LANDS BETWEEN</span></a><div class="card-body"><p class="genre">ACTION ADVENTURE</p><h2>Elden Ring</h2><p class="description">Explore Limgrave, face bosses, and follow the guidance of grace.</p><div class="card-actions"><a class="play play-link" href="elden-ring/">Play game <span>↗</span></a><button data-guide="elden-ring">Controls & notes</button></div></div></article>
+   <article class="game-card subnautica"><a class="cover play-link" href="subnautica/" aria-label="Play Subnautica"><img src="launcher/previews/subnautica.png" alt="The browser build's Lifepod 5 above coral and the Safe Shallows seabed" width="1440" height="900"><span class="game-index">02 / PLANET 4546B</span></a><div class="card-body"><p class="genre">UNDERWATER SURVIVAL</p><h2>Subnautica</h2><p class="description">Dive into the crater. Gather, craft, build a base, and venture deeper.</p><div class="card-actions"><a class="play play-link" href="subnautica/">Play game <span>↗</span></a><button data-guide="subnautica">Controls & notes</button></div></div></article>
+   <article class="game-card fortnite"><a class="cover play-link" href="fortnite/" aria-label="Play Fortnite"><img src="launcher/previews/fortnite.png" alt="The browser build's Tilted Towers street, buildings, player, and weapon HUD" width="1280" height="720"><span class="game-index">03 / CHAPTER ONE</span></a><div class="card-body"><p class="genre">BATTLE ROYALE</p><h2>Fortnite</h2><p class="description">Drop onto the island, loot, build, and survive against local bots.</p><div class="card-actions"><a class="play play-link" href="fortnite/">Play game <span>↗</span></a><button data-guide="fortnite">Controls & notes</button></div></div></article>
+  </div>
+  <footer><p>Unofficial fan adaptations. Simplified worlds and replacement assets.<br>Each game includes its coverage report and asset credits.</p><button id="help-button">Launch help <span>↗</span></button></footer>
+ </main>
+ <dialog id="guide"><div class="dialog-top"><span class="eyebrow">BEFORE YOU PLAY</span><button id="close-guide" aria-label="Close guide">×</button></div><h2 id="guide-title"></h2><div id="guide-body"></div></dialog>
+ <script src="launcher/hub.js"></script>
+</body>
+</html>

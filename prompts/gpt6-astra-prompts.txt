@@ -1,0 +1,562 @@
+Fortnite:
+
+Create a complete, playable browser recreation of Fortnite, with exceptional visual fidelity to the original Chapter 1 island.
+
+Choose the implementation technology yourself. Deliver a playable HTML entry point named index.html, plus any necessary asset files. Provide clear launch instructions. The result must be an actual interactive game, not screenshots, a landing page, or a menu mockup.
+
+REFERENCE AND ACCURACY
+Use the original Chapter 1 Season 3 island as the default reference. Before implementation, verify its map, named locations, architecture, weapons, building rules, interface, and visual style using screenshots and gameplay footage.
+
+Do not confuse the original Chapter 1 island with later Fortnite OG releases. Do not combine locations or mechanics from different seasons. If references disagree, establish the correct version before building.
+
+VISUAL QUALITY IS A PRIMARY REQUIREMENT
+The game must immediately resemble Fortnite through its terrain, architecture, materials, lighting, colors, proportions, animation, and environmental detail.
+
+Do not substitute a flat grassy plane, scattered cubes, generic houses, or a few isolated buildings for the island. Do not consider the game visually complete while recognizable locations remain placeholders.
+
+Match Fortnite’s stylized art direction:
+- Sculpted terrain with readable hills, valleys, cliffs, and mountain silhouettes.
+- Saturated but controlled colors, atmospheric distance, soft shadows, and a convincing sky.
+- Stylized trees, bushes, rocks, water, grass, roads, and ground materials.
+- Recognizable building shapes, roofs, windows, storefronts, interiors, and destruction effects.
+- Consistent character scale, weapon scale, door heights, room sizes, and camera framing.
+
+THE ACTUAL OG MAP
+Recreate the reference island’s geography and spatial relationships. Verify the presence, spelling, placement, boundaries, and layout of these Season 3 named locations:
+
+Tilted Towers
+Pleasant Park
+Retail Row
+Greasy Grove
+Salty Springs
+Dusty Depot
+Loot Lake
+Tomato Town
+Anarchy Acres
+Fatal Fields
+Wailing Woods
+Lonely Lodge
+Moisty Mire
+Flush Factory
+Shifty Shafts
+Snobby Shores
+Haunted Hills
+Junk Junction
+Lucky Landing
+
+Include unnamed landmarks, isolated houses, roads, bridges, hills, campsites, and connecting terrain from the reference.
+
+Place the correct location names on the map. Match the island silhouette and the relative size, orientation, elevation, and distance between locations. Preserve reference water and traversal behavior rather than introducing mechanics from later seasons.
+
+LOCATION-SPECIFIC ASSETS
+Each location must have its own recognizable layout and asset set.
+
+Reproduce Tilted Towers’ dense streets and multistory buildings, Pleasant Park’s houses and central sports field, Retail Row’s residential and shopping areas, Dusty Depot’s three warehouses, and Loot Lake’s water, shoreline, and central house.
+
+Give farms their fields, barns, fences, and agricultural props. Give industrial locations their factory structures, machinery, yards, and metal materials. Reproduce the distinct residential architecture of Snobby Shores, the underground layout of Shifty Shafts, and the themed architecture of Lucky Landing.
+
+Verify these details against the selected release rather than inventing arrangements.
+
+Buildings must have enterable interiors with appropriate floors, stairs, doors, windows, attics, basements where present, furniture, and loot placement. Exteriors must correspond to interiors. Build a reusable asset library without making every location look identical.
+
+Use supplied or appropriately licensed assets where available. Create faithful replacements for unavailable assets and identify material differences.
+
+BUILDING AND DESTRUCTION
+Building must look and feel like Fortnite, not generic block placement.
+
+Implement walls, floors, ramps, and roof pieces with accurate proportions, snapping, rotation, placement previews, material costs, construction animations, health, editing, repair, and destruction.
+
+Wood, brick, and metal must have distinct models, surface detail, construction stages, sounds, and damage appearances.
+
+Implement valid edit patterns, responsive previews, structural support, and reference placement rules. Player-built structures must align correctly with terrain and existing architecture.
+
+Make environmental buildings and props destructible according to the reference rules. Destruction must update collision, support, resource harvesting, and loot behavior.
+
+GAMEPLAY
+Implement third-person movement, camera collision, aiming, jumping, crouching, harvesting, weapons, ammunition, reloads, recoil, spread, projectiles, damage, shields, healing, inventory, loot containers, and item pickups.
+
+Match the selected release’s mechanics. Do not add later traversal systems or equipment unless explicitly implementing a separate mode.
+
+Implement the full match loop: lobby, pre-match phase, Battle Bus, dropping, gliding, landing, looting, combat, building, storm circles, elimination, spectating, victory, results, and another match.
+
+Bots must navigate the actual map, enter buildings, collect loot, fight, build, and respond to the storm. Implement multiplayer if feasible, but distinguish real networking from local bots.
+
+MENUS AND PRESENTATION
+Recreate the reference lobby, mode selection, inventory, settings, loading screens, map, minimap, compass, health and shield displays, hotbar, material counts, elimination feedback, and victory presentation.
+
+Match menu composition, colors, spacing, transitions, and interaction sounds. All buttons must work or clearly identify unavailable services. Persist settings.
+
+QUALITY AND DELIVERY
+Build in stages, but keep the full target scope. Prioritize a visually convincing, playable location first, then expand across the island without reducing the remaining locations to placeholders.
+
+Inspect actual rendered gameplay and compare representative viewpoints against references. Check buildings at street level, interiors, aerial views, terrain silhouettes, materials, lighting, and player-built structures.
+
+Use asset streaming and distance-based detail to maintain smooth browser performance while retaining visual quality.
+
+Deliver index.html and required assets, launch instructions, controls, and a feature-coverage report. State any missing locations, simplified assets, unsupported systems, or inaccuracies.
+
+Do not call the result complete until the map, visual presentation, menus, and full match flow have been implemented and tested.
+
+--------------------------------------
+
+Subnautica:
+
+Create a complete, playable browser recreation of the original Subnautica, with exceptional visual fidelity, deep survival gameplay, genuinely frightening exploration, and outstanding sound design.
+
+Choose the implementation technology yourself. Deliver a playable HTML entry point named index.html, together with necessary asset files and clear launch instructions. The result must be an actual interactive game with connected systems and complete progression.
+
+REFERENCE AND SCOPE
+Use one documented release of the original Subnautica. State the version and verify its geography, biome names, assets, creatures, vehicles, interfaces, mechanics, and story progression using reference maps, screenshots, and gameplay footage.
+
+Do not mix in Below Zero or other entries. Do not invent details and present them as accurate. Track verified features, approximations, and missing content.
+
+Use supplied or appropriately licensed assets where available. Create consistent replacements for unavailable assets and document material differences.
+
+VISUAL QUALITY IS A PRIMARY REQUIREMENT
+The world must immediately resemble Subnautica through its underwater lighting, terrain, visibility, flora, fauna, architecture, equipment, and scale.
+
+Do not substitute an empty blue scene, a flat seabed, generic fish, primitive vehicles, or a few scattered rocks for the actual game.
+
+Recreate:
+- Convincing transitions between underwater views and the surface.
+- Sunlight filtering through water and caustics where appropriate.
+- Suspended particles, atmospheric depth, and distance fog.
+- Biome-specific water colors and visibility.
+- Bioluminescent plants and creatures.
+- Detailed terrain, caves, coral formations, and underwater vegetation.
+- Recognizable tools, habitats, wrecks, alien structures, and vehicles.
+- Appropriate animation, materials, shadows, and environmental effects.
+
+Each biome must have its own terrain shapes, palette, vegetation density, wildlife, lighting, and soundscape. Avoid applying one blue filter to the entire world.
+
+Maintain visual quality at gameplay distance. Nearby terrain, interiors, tools, and creatures need the same care as distant scenery.
+
+HORROR IS A CORE REQUIREMENT
+The game must be genuinely scary and deliver sustained survival-horror tension while preserving Subnautica’s beauty and sense of discovery.
+
+Capture the fear of being alone in an immense ocean, unable to see the bottom, hearing something outside your field of view, and knowing that progression requires descending farther.
+
+Preserve the contrast between relatively reassuring shallows and dangerous depths. Do not make every area equally dark or keep the player under constant attack.
+
+Create fear through:
+- Vast open water with few nearby reference points.
+- Drop-offs that disappear beyond visibility.
+- Distant silhouettes whose scale becomes apparent gradually.
+- Dense kelp that interrupts sightlines.
+- Confined wrecks and caves with limited escape routes.
+- Increasing distance from the surface, shelter, and supplies.
+- Creature sounds whose sources may initially be unseen.
+- Functional oxygen, power, depth, and vehicle-damage systems.
+
+Match the reference visibility of each biome. Darkness must not become an excuse for missing environmental detail.
+
+The flashlight must illuminate a limited volume, revealing nearby terrain and particles while leaving distant water uncertain.
+
+Keep hazards learnable and navigation usable. Fear should come from vulnerability and uncertainty, not arbitrary damage or unreadable gameplay.
+
+EXCEPTIONAL SOUND DESIGN
+Treat sound as a primary gameplay system.
+
+Build a layered soundscape with convincing direction, distance, obstruction, and environmental acoustics. Do not rely on one looping underwater ambience track.
+
+Include:
+- Distinct ambience for each biome and depth range.
+- Breathing and equipment sounds appropriate to the player’s state.
+- Swimming, propulsion, tool use, scanning, construction, and item interactions.
+- Distant creature calls, nearby movement, low rumbles, and predator vocalizations.
+- Vehicle engines, electrical hum, hull creaks, impacts, damage, and alarms.
+- Habitat machinery, doors, water leaks, and flooding.
+- Appropriate acoustics inside wrecks, caves, bases, and vehicles.
+- Convincing transitions between underwater audio, surface air, and enclosed spaces.
+
+Use spatial positioning, attenuation, filtering, and reverberation appropriately. A creature behind the player must sound behind them. Distant sounds need a convincing acoustic character, not merely lower volume.
+
+Make important warnings intelligible during loud encounters. Include independent controls for master volume, effects, ambience, music, and voice.
+
+Use music selectively. Support wonder in beautiful areas and restraint in dangerous ones. Leave space for silence, breathing, machinery, and distant calls.
+
+Avoid constant horror music, excessive loudness, and repeated scripted jump scares.
+
+THE ACTUAL WORLD
+Recreate the original crater map’s geography, scale, elevation, biome boundaries, depth ranges, landmarks, and connecting routes.
+
+Verify and reproduce environments including:
+Safe Shallows
+Kelp Forest
+Grassy Plateaus
+Mushroom Forest
+Jellyshroom Cave
+Bulb Zone
+Grand Reef
+Deep Grand Reef
+Sparse Reef
+Sea Treader’s Path
+Underwater Islands
+Mountains
+Dunes
+Crag Field
+Crash Zone
+Blood Kelp Zone
+Blood Kelp Trench
+Lost River
+Inactive Lava Zone
+Lava Lakes
+
+Include the Floating Island, Mountain Island, Aurora, starting lifepod, other lifepods, wrecks, abandoned Degasi bases, alien facilities, and crater edge.
+
+Preserve the designed world layout rather than replacing it with random terrain. Match the relationship between shallow exploration, resource discovery, vehicle upgrades, deeper routes, and story progression.
+
+Use the reference navigation system. Do not add a conventional world-map interface unless explicitly presented as an optional departure.
+
+ENVIRONMENTAL ASSETS AND LOCATIONS
+Recreate recognizable coral tubes, reef formations, creepvines, mushroom trees, grassy plateaus, blood kelp, thermal vents, brine pools, skeletons, lava formations, and alien architecture.
+
+Match their scale and density. The environment must feel like a coherent ecosystem.
+
+Reproduce the Aurora’s silhouette, position, exterior scale, damaged spaces, entrances, navigable interiors, and environmental storytelling.
+
+Wrecks must contain appropriate corridors, rooms, doors, debris, discoveries, and lighting. Their exterior geometry must correspond to their accessible interiors.
+
+Abandoned bases and alien facilities need recognizable layouts, materials, equipment, access requirements, and story functions.
+
+Use detailed, consistently scaled models for resources, tools, storage containers, fabricators, habitat components, and vehicle equipment. Do not leave generic boxes as final assets.
+
+CREATURES AND ECOSYSTEM
+Implement the reference flora and fauna with recognizable silhouettes, proportions, colors, habitats, sounds, and animations.
+
+Include small ecosystem creatures as well as major predators. Verify creatures such as Peepers, Bladderfish, Stalkers, Sand Sharks, Reefbacks, Crabsquids, Reaper Leviathans, Ghost Leviathans, and Sea Dragon Leviathans against the selected release.
+
+Implement species-appropriate wandering, feeding, defensive behavior, territorial behavior, pursuit, attacks, retreat, and applicable interactions.
+
+Support catching, harvesting, scanning, growing, and other ecosystem interactions where the reference allows them.
+
+Creatures must navigate terrain convincingly. Prevent obvious clipping through caves, wrecks, habitats, and vehicles.
+
+LEVIATHANS AND PREDATOR HORROR
+Major predators must feel like large creatures inhabiting the world.
+
+Allow the player to hear a call before seeing its source, glimpse movement beyond clear visibility, or notice a silhouette below them. These cues must correspond to actual creatures and their behavior.
+
+Respect each species’ behavior rather than assigning every predator the same stalking routine.
+
+Match creature scale relative to the player, terrain, and vehicles. Animate the whole body convincingly during swimming, turning, pursuit, and attacks.
+
+Implement appropriate attack animations, positional audio, damage feedback, camera response, and vehicle interactions.
+
+Provide opportunities to evade, retreat, and learn. Allow quiet periods between encounters so danger retains its impact.
+
+PLAYER MOVEMENT AND SURVIVAL
+Implement first-person swimming, diving, surface movement, walking, ladders, and entering or leaving habitats and vehicles.
+
+Match movement speeds, camera behavior, equipment effects, interaction reach, and applicable buoyancy behavior.
+
+Implement health, oxygen, food, water, radiation, temperature hazards where applicable, healing, drowning, damage, and death consequences.
+
+Support the reference game modes and their distinct survival rules.
+
+Implement equipment slots, tools, batteries, power cells, charging, oxygen tanks, upgrades, and item-use behavior.
+
+Oxygen, battery power, vehicle condition, and distance from shelter must create real decisions. Do not trigger arbitrary equipment failures merely to manufacture scares.
+
+INVENTORY, SCANNING, AND CRAFTING
+Implement the complete resource, item, recipe, blueprint, fragment, and crafting-station inventory of the selected release.
+
+Match:
+- Item dimensions and inventory capacity rules.
+- Storage behavior and equipment slots.
+- Gathering and harvesting requirements.
+- Recipe ingredients and quantities.
+- Blueprint and fragment discovery.
+- Crafting prerequisites and station requirements.
+- Battery and power-cell interactions.
+- Tool functions and upgrades.
+- Deployable devices and their behavior.
+- Farming and advanced material production.
+
+Every recipe must connect to functioning gameplay systems. Avoid items that exist only as icons or descriptions.
+
+BASE BUILDING
+Implement reference habitat components, including corridors, rooms, windows, hatches, foundations, ladders, Moonpools, observatories, furniture, storage, and specialist equipment.
+
+Match exterior models, interiors, materials, construction previews, connection rules, resource costs, construction effects, and deconstruction behavior.
+
+Implement power generation and consumption, oxygen supply, hull integrity, depth effects, breaches, flooding, and repairs according to the reference rules.
+
+Bases must provide meaningful relief through enclosed spaces, warmer lighting, and familiar mechanical sounds. Power loss and flooding must affect both gameplay and atmosphere.
+
+Persist every constructed object and its state.
+
+VEHICLES
+Faithfully recreate the Seamoth, Prawn Suit, and Cyclops.
+
+Match their exterior silhouettes, proportions, materials, cockpit views, interfaces, lighting, animation, sounds, and applicable interiors.
+
+Implement:
+- Construction and entry or exit.
+- Distinct movement and control behavior.
+- Power consumption and battery systems.
+- Depth limits and upgrades.
+- Damage, repair, and destruction.
+- Storage and equipment modules.
+- Docking and applicable charging behavior.
+- Lighting and defensive equipment.
+- Prawn Suit arms and movement systems.
+- Cyclops onboard systems and facilities.
+
+Vehicle interiors must remain useful, navigable spaces where applicable.
+
+Make mechanical sounds reflect operational state. Damage warnings, engine noise, hull stress, and power loss should communicate actual conditions.
+
+MENUS AND INTERFACE
+Recreate startup, main menu, new-game mode selection, save selection, loading screens, pause menu, settings, death handling, and ending flow.
+
+Recreate the HUD, quick slots, inventory, equipment slots, storage, crafting interfaces, scanner feedback, PDA, databank, blueprints, radio messages, beacons, and vehicle displays.
+
+Match layout, colors, typography, transparency, icon treatment, animations, selection behavior, and interface sounds.
+
+Support input remapping, mouse sensitivity, graphics settings, audio controls, subtitles, and persistent preferences.
+
+All visible buttons must work or clearly identify an unavailable dependency.
+
+STORY AND COMPLETE PROGRESSION
+Implement progression from the starting lifepod through distress signals, logs, discoveries, technological upgrades, deeper biomes, alien facilities, disease progression, the cure, and escape.
+
+Preserve prerequisites, access requirements, event triggers, and discovery order where required.
+
+Include the necessary resources, blueprints, tools, vehicles, facilities, and interactions so a fresh save can reach the ending through normal play.
+
+Preserve optional exploration and environmental storytelling alongside the main progression.
+
+Implement the ending, credits, and reference save behavior. Mark substituted writing, recordings, or cinematics clearly in the coverage report.
+
+SAVING AND WORLD PERSISTENCE
+Save player status, inventory, equipment, containers, discoveries, blueprints, story flags, bases, vehicles, and relevant world changes.
+
+Test repeated save/load cycles during exploration, construction, vehicle use, and story progression.
+
+Prevent lost items, duplicated resources, broken quests, misplaced vehicles, and reset base states.
+
+PERFORMANCE
+Use world streaming, distance-based detail, and appropriate asset management to maintain smooth browser gameplay.
+
+Preserve collision and persistent state while streaming. Prevent terrain pop-in from exposing interiors or allowing creatures and vehicles through unloaded geometry.
+
+Maintain stable frame pacing during vegetation-heavy scenes, large creature encounters, complex bases, and vehicle travel.
+
+Support browser audio activation correctly so sound works after the initial player interaction. Clearly explain any hosting requirements in the launch instructions.
+
+IMPLEMENTATION PROCESS
+Begin with a polished, connected starting area containing the lifepod, Safe Shallows, nearby kelp, resource gathering, scanning, crafting, oxygen management, and functional audio.
+
+Use this area to establish the required visual and gameplay quality. Then expand across all biomes, vehicles, construction systems, and story dependencies.
+
+Keep a checklist of implemented, partial, missing, and unverified content. Do not treat the initial area as the completed game.
+
+VISUAL, AUDIO, AND GAMEPLAY ACCEPTANCE
+Inspect actual rendered gameplay against reference viewpoints in shallow water, kelp forests, wreck interiors, bases, vehicle cockpits, deep caves, and leviathan territory.
+
+Test with headphones and speakers. Verify that:
+- Biomes look and sound distinct.
+- Deep water feels different from shallow water.
+- Players can estimate nearby threats’ direction through sound.
+- Predator encounters are frightening without repetitive scripted jump scares.
+- Shelter provides noticeable relief.
+- Warnings remain audible during loud encounters.
+- Audio loops and transitions do not break immersion.
+- Lighting preserves both atmosphere and navigation.
+- All survival, crafting, construction, and vehicle systems function.
+- A fresh save can reach the ending without developer commands.
+
+DELIVERY
+Provide index.html, required assets, controls, launch instructions, and an honest coverage report.
+
+Identify missing areas, simplified systems, substituted assets, unverified details, and technical limitations.
+
+Do not call an underwater scene or a short survival demo the full game. The target is a visually convincing, deeply atmospheric, genuinely frightening recreation with complete connected gameplay and progression.
+
+
+---------------------------------------
+
+Elden Ring:
+
+
+Create a complete, playable browser recreation of Elden Ring, with exceptional visual fidelity to its world, architecture, characters, equipment, combat, interface, and atmosphere.
+
+Choose the implementation technology yourself. Deliver a playable HTML entry point named index.html, plus any necessary asset files and clear launch instructions. The result must be an actual interactive game with connected exploration and progression.
+
+REFERENCE AND SCOPE
+Use one documented release of the Elden Ring base game. State the exact reference version and verify its geography, location names, architecture, enemies, equipment, menus, combat rules, and progression using reference screenshots, maps, and gameplay footage.
+
+Treat Shadow of the Erdtree as a separate expansion scope. Do not silently mix expansion content into the base game.
+
+Create a version-specific world inventory and feature checklist. Distinguish verified details from approximations. Use supplied or appropriately licensed assets, and document replacements.
+
+VISUAL QUALITY IS A PRIMARY REQUIREMENT
+The game must immediately resemble Elden Ring through its art direction, monumental architecture, terrain, materials, lighting, animation, and composition.
+
+Do not substitute a generic medieval landscape, a flat terrain plane, repeated castle blocks, or scattered ruins for the Lands Between. Recognizable locations must have their actual visual identity and spatial structure.
+
+Match the reference’s:
+- Vast landscapes framed by castles, cliffs, towers, bridges, and the Erdtree.
+- Weathered stone, intricate masonry, aged metal, embroidered cloth, leather, roots, and decaying surfaces.
+- Region-specific lighting, atmospheric haze, cloud cover, weather, and color palettes.
+- Dense environmental detail balanced with readable routes and combat spaces.
+- Character proportions, armor silhouettes, weapon dimensions, cloth movement, and creature scale.
+- Restrained interface presentation and dramatic spell, weapon, and boss effects.
+
+Inspect visual quality from actual gameplay viewpoints. A convincing distant skyline is insufficient if nearby buildings, terrain, characters, and interiors remain unfinished.
+
+THE ACTUAL LANDS BETWEEN
+Recreate the reference world’s geography, elevation, connections, landmarks, roads, and traversable spaces.
+
+Verify and reproduce the major regions and their subregions, including:
+Limgrave
+Weeping Peninsula
+Liurnia of the Lakes
+Caelid
+Greyoll’s Dragonbarrow
+Altus Plateau
+Mt. Gelmir
+Capital Outskirts
+Mountaintops of the Giants
+Consecrated Snowfield
+Crumbling Farum Azula
+
+Include underground areas and their correct access routes:
+Siofra River
+Ainsel River
+Nokron, Eternal City
+Nokstella, Eternal City
+Deeproot Depths
+Lake of Rot
+Mohgwyn Palace
+
+Preserve the relationship between surface and underground geography. Implement the reference map layers and transitions.
+
+RECOGNIZABLE LOCATIONS AND ARCHITECTURE
+Reproduce major locations with their actual layouts, silhouettes, materials, interiors, enemy placements, shortcuts, and landmarks.
+
+Include:
+Church of Elleh
+Gatefront Ruins
+Stormveil Castle
+Roundtable Hold
+Academy of Raya Lucaria
+Caria Manor
+Redmane Castle
+Volcano Manor
+Leyndell, Royal Capital
+Subterranean Shunning-Grounds
+Castle Sol
+Miquella’s Haligtree
+Elphael, Brace of the Haligtree
+
+Implement later changes to locations when required by progression.
+
+Stormveil must have its recognizable cliffside approach, layered fortifications, courtyards, rooftops, interior rooms, and connected routes. Raya Lucaria must express its academic and magical identity through its architecture, interiors, grounds, and skyline. Leyndell must have its monumental capital architecture, streets, buildings, elevation changes, and relationship to the Erdtree.
+
+Verify details against references. Do not invent interchangeable castle layouts.
+
+Churches, villages, shacks, towers, forts, ruins, caves, tunnels, catacombs, and graves must use appropriate construction styles and props. Reproduce actual accessible spaces and closed boundaries rather than giving every decorative building an invented interior.
+
+Populate environments with reference-appropriate furniture, rubble, statues, banners, candles, vegetation, gravestones, machinery, and environmental storytelling.
+
+WORLD STRUCTURE AND EXPLORATION
+Preserve the original world’s designed layout rather than generating random terrain.
+
+Implement roads, cliffs, ravines, forests, lakes, swamps, lifts, bridges, portals, ladders, doors, hidden routes, shortcuts, and traversal gates.
+
+Support discovery, map fragments, Sites of Grace, fast travel restrictions, checkpoints, resting, day and night, weather, and enemy respawning.
+
+Place loot, NPCs, enemies, field bosses, dungeon entrances, and upgrade materials according to the selected reference. Exploration rewards must support actual character progression.
+
+PLAYER MOVEMENT AND CAMERA
+Implement third-person movement, sprinting, jumping, crouching, dodging, backstepping, ladder climbing, and applicable interactions.
+
+Match movement speed, acceleration, animation timing, turning, input buffering, recovery, fall damage, and equipment-load effects.
+
+Implement free camera, target lock, target switching, camera collision, and behavior around large enemies and confined spaces.
+
+Implement Torrent with reference-appropriate summoning restrictions, mounted movement, jumping, combat, damage, dismounting, and interaction with terrain.
+
+COMBAT MUST FEEL ACCURATE
+Implement stamina-based combat with verified attack startup, active frames, recovery, hit detection, dodge invulnerability, stamina costs, and animation commitments.
+
+Support light attacks, heavy attacks, charged attacks, running attacks, jumping attacks, rolling attacks, backsteps, two-handing, paired weapon behavior, blocking, parrying, guard counters, critical attacks, and stance breaking.
+
+Match weapon reach, attack motion, impact, hit reactions, poise, damage types, defenses, status buildup, and interruption rules.
+
+Implement sorceries, incantations, catalysts, FP consumption, casting requirements, projectiles, targeting, buffs, and status effects.
+
+Support Ashes of War, weapon skills, affinities, upgrades, scaling, equipment requirements, and compatible weapon restrictions.
+
+Make combat readable through animation, sound, effects, and enemy reactions. Do not substitute instant damage calculations for properly timed attacks.
+
+CHARACTERS, EQUIPMENT, AND ENEMIES
+Recreate the reference character classes, appearance options, attributes, leveling, equipment slots, inventory, item descriptions, consumables, crafting, and upgrade systems.
+
+Armor and weapons must visibly match equipped items. Preserve distinctive silhouettes, material qualities, and animation behavior.
+
+Implement enemies with their individual perception, patrol, aggression, movement, attack selection, recovery windows, resistances, drops, and reset behavior.
+
+Include accurate encounters for major bosses such as:
+Margit, the Fell Omen
+Godrick the Grafted
+Rennala, Queen of the Full Moon
+Starscourge Radahn
+Morgott, the Omen King
+Rykard, Lord of Blasphemy
+Fire Giant
+Maliketh, the Black Blade
+Mohg, Lord of Blood
+Malenia, Blade of Miquella
+Godfrey, First Elden Lord
+Radagon of the Golden Order
+Elden Beast
+
+This is a starting checklist, not the complete boss inventory. Account for every required and optional encounter in the agreed scope.
+
+Recreate boss arenas, entrances, phase transitions, attacks, effects, audio cues, rewards, and progression consequences. Do not reuse one generic boss behavior across encounters.
+
+DEATH, PROGRESSION, AND QUESTS
+Implement runes, leveling, death, rune recovery, checkpoint respawning, flask allocation, flask upgrades, equipment upgrades, merchants, and relevant services.
+
+Support Spirit Ashes, NPC summons, and their reference restrictions.
+
+Implement NPC quest states, dialogue interactions, dependencies, rewards, and consequences. Track world changes and prevent save/load from breaking quest progression.
+
+Recreate the complete base-game progression and its ending branches. A fresh character must be able to reach the implemented endings through normal gameplay without developer commands.
+
+MENUS AND INTERFACE
+Recreate startup, title screen, new game, character creation, loading, HUD, equipment, inventory, status, crafting, map, dialogue, merchant interfaces, Site of Grace menus, settings, death presentation, and ending flow.
+
+Match the reference’s typography, panel proportions, ornamentation, icon treatment, spacing, transparency, sounds, and navigation.
+
+Implement contextual prompts, boss health bars, enemy health indicators, compass, resource displays, quick items, equipment comparison, and detailed item views.
+
+Respect the reference behavior for menus and pausing. Every visible control must work or clearly identify an unavailable dependency.
+
+ONLINE FEATURES
+Track cooperative play, competitive multiplayer, messages, bloodstains, and other online systems separately.
+
+If implemented, use real networking and appropriate synchronization. Clearly identify any offline simulation. Do not present scripted phantoms or fabricated player messages as live online activity.
+
+SAVING AND PERFORMANCE
+Persist character appearance, attributes, inventory, equipment, upgrades, discovered locations, checkpoints, defeated bosses, quest states, and world changes.
+
+Use world streaming, distance-based detail, and appropriate asset management to support browser performance while preserving regional identity and visual detail.
+
+Keep input responsive and frame pacing stable during traversal, combat, large effects, and boss encounters.
+
+IMPLEMENTATION AND ACCEPTANCE
+Start with a polished, connected section of Limgrave containing Church of Elleh, Gatefront Ruins, terrain, enemies, a Site of Grace, equipment, and fully functional combat. Use this to establish the required visual and gameplay quality, then expand across the complete scope.
+
+Do not treat this initial section as the finished game.
+
+Compare rendered gameplay against references at matching viewpoints. Inspect landscapes, architecture, interiors, equipment, enemies, menus, and combat animation.
+
+Test exploration routes, collision, combat timing, equipment interactions, death and recovery, quests, boss progression, saves, and full playthrough completion.
+
+Deliver index.html, required assets, controls, launch instructions, and an honest coverage report identifying missing areas, simplified encounters, substituted assets, and unverified behavior.
+
+Both convincing visual fidelity and complete connected gameplay are required. Do not label a generic fantasy combat arena or a small open-world demo as a complete Elden Ring recreation.

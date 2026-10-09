@@ -1,0 +1,435 @@
+{
+  "platform": "Windows",
+  "files": [
+    {
+      "path": "START GAMES.cmd",
+      "bytes": 338,
+      "sha256": "71833a16a6556a54bedca49a17d3ac89e11234269ab01cc0ee28411bcb11a236"
+    },
+    {
+      "path": "START HERE.txt",
+      "bytes": 1178,
+      "sha256": "7f7dc8173728c24023617fa0a8c158c889f5613eb76d22eb29b64a10d9ca0207"
+    },
+    {
+      "path": "game-files/elden-ring/ASSETS.md",
+      "bytes": 2445,
+      "sha256": "e0793772a34e42ede0d23d69a55c25c0a70d32988a000ac341cf50b9949066b8"
+    },
+    {
+      "path": "game-files/elden-ring/COVERAGE.md",
+      "bytes": 11854,
+      "sha256": "893007f2671c6efc88604d9becc465cae013cb9a5ea8dbb0b9edea8f4847749f"
+    },
+    {
+      "path": "game-files/elden-ring/README.md",
+      "bytes": 4645,
+      "sha256": "01b80020340dc2dfdad349c047ae7447428d80e1d9f0ad963619a61f44dd01bd"
+    },
+    {
+      "path": "game-files/elden-ring/REFERENCES.md",
+      "bytes": 5133,
+      "sha256": "f676c1055ee54c8b10d808558772b9ae27a6cb9eb82a0f8a7684e50c03cfb6b4"
+    },
+    {
+      "path": "game-files/elden-ring/assets/aerial_grass_rock_diff_1k.jpg",
+      "bytes": 666655,
+      "sha256": "57b8041bfe0d0f01430e4dbaad45e7ddddf0a9fc97317f90dbc51f7b0d9e1b5d"
+    },
+    {
+      "path": "game-files/elden-ring/assets/aerial_grass_rock_nor_gl_1k.jpg",
+      "bytes": 904956,
+      "sha256": "1aa3e23bff453f152e089b9f83aa36b4901651e019f7e2ca01d5331a9bbbda78"
+    },
+    {
+      "path": "game-files/elden-ring/assets/aerial_grass_rock_rough_1k.jpg",
+      "bytes": 362214,
+      "sha256": "b9f3f76aba74007f708333c0dbe73c52eb83ea0c4187a13e2e994f888a25114a"
+    },
+    {
+      "path": "game-files/elden-ring/assets/asset-manifest.json",
+      "bytes": 4793,
+      "sha256": "d4f96c9265cbc1404ba5d3e29596a7eb3c972164e3ed4107de0c476bfed8224c"
+    },
+    {
+      "path": "game-files/elden-ring/assets/bark_brown_02_diff_1k.jpg",
+      "bytes": 659592,
+      "sha256": "920fa0bed0c9d78c1d530e99795113afd532d7db746de440f4a85d7c83ed0f1a"
+    },
+    {
+      "path": "game-files/elden-ring/assets/bark_brown_02_nor_gl_1k.jpg",
+      "bytes": 1015623,
+      "sha256": "0d5e691e8ad8bcd093a3587887fda2a6b4a948b5708a4f256f7919584c6eb857"
+    },
+    {
+      "path": "game-files/elden-ring/assets/bark_brown_02_rough_1k.jpg",
+      "bytes": 337946,
+      "sha256": "68125592de36e15bae7aa6db85c4d135aeb7e5653199ba226483a70f6d69837d"
+    },
+    {
+      "path": "game-files/elden-ring/assets/mossy_rock_diff_1k.jpg",
+      "bytes": 1124438,
+      "sha256": "4dbf37f1b0465c9c8914213163923be159716f5b97fb6946437b6c5e143ef540"
+    },
+    {
+      "path": "game-files/elden-ring/assets/mossy_rock_nor_gl_1k.jpg",
+      "bytes": 995727,
+      "sha256": "232cdd6a9fdfd01bb8bb1f8f604c53dbca79fa0d3d7995edf85c9945757aa8df"
+    },
+    {
+      "path": "game-files/elden-ring/assets/mossy_rock_rough_1k.jpg",
+      "bytes": 780918,
+      "sha256": "0a18bdeb08444b730170b0477f13940ce6cd4d82d06137df661f96d1e2a6a66e"
+    },
+    {
+      "path": "game-files/elden-ring/assets/mossy_stone_wall_diff_1k.jpg",
+      "bytes": 939649,
+      "sha256": "7240e55cfc662ea403600fc7d5143f72983fbe8098d55fc6ccae75d21421dce4"
+    },
+    {
+      "path": "game-files/elden-ring/assets/mossy_stone_wall_nor_gl_1k.jpg",
+      "bytes": 1282621,
+      "sha256": "e159e429269bc933743ee47051b4081261e6131e994242bf26e05ab0a0df4542"
+    },
+    {
+      "path": "game-files/elden-ring/assets/mossy_stone_wall_rough_1k.jpg",
+      "bytes": 476684,
+      "sha256": "06b19bedb07c6f81acdd8a461e73e7c3d5bfa0afedba8b4e9bda9cb50fb0b1fb"
+    },
+    {
+      "path": "game-files/elden-ring/index.html",
+      "bytes": 5463,
+      "sha256": "661eb1d81a8dd6d9b8928f4610a4c7fb3c431aeaea3c85c19d2302e3000f9e19"
+    },
+    {
+      "path": "game-files/elden-ring/src/audio.js",
+      "bytes": 1815,
+      "sha256": "b4cc9b72b30cd24e2a37987d40f2bb517b23b8635522ed75ce764600c480176b"
+    },
+    {
+      "path": "game-files/elden-ring/src/core.js",
+      "bytes": 6491,
+      "sha256": "c7710db66f306643e2246442e795165c07ee5452d851c8ca64adc1a1374cdadd"
+    },
+    {
+      "path": "game-files/elden-ring/src/data.js",
+      "bytes": 16470,
+      "sha256": "0499f3b324290c53ac6a73af8e0967c12f6208af1a0df1965ffaaee56f9932dd"
+    },
+    {
+      "path": "game-files/elden-ring/src/diagnostics.js",
+      "bytes": 8594,
+      "sha256": "7dfabafee506f32bb2f74cdc928ae6575e70669dd1f38f79c7f40161fe1b28f3"
+    },
+    {
+      "path": "game-files/elden-ring/src/graphics.js",
+      "bytes": 21331,
+      "sha256": "734d3eb8fd08b16f81529b9482e01a10a578c71674cd2e83ec1db81b810d2e92"
+    },
+    {
+      "path": "game-files/elden-ring/src/main.js",
+      "bytes": 54728,
+      "sha256": "2a364bbb664fe170bf65eb43f3aa0138ddd743e3be0ff8c3a3c313ddcba0cd82"
+    },
+    {
+      "path": "game-files/elden-ring/src/ui.js",
+      "bytes": 25794,
+      "sha256": "2178451093ac91d7b94f6eb8a6e9cec073df91ddbe535852a604727189560bca"
+    },
+    {
+      "path": "game-files/elden-ring/src/world.js",
+      "bytes": 33059,
+      "sha256": "15e491449e12018deb623c3eceb1fdaedeaa3b51ed5525bd099ec03e61283e97"
+    },
+    {
+      "path": "game-files/elden-ring/style.css",
+      "bytes": 13349,
+      "sha256": "4b9ea203d9a85ea1e503ed5c427c16ad46f6ce2aefe1138e40ba042a33e4e267"
+    },
+    {
+      "path": "game-files/elden-ring/vendor/THREE-LICENSE.txt",
+      "bytes": 1081,
+      "sha256": "4c40a1ef62450b857c3b2aaf294936304cd552d965fbcd9d32d4c5bcf4ba4454"
+    },
+    {
+      "path": "game-files/elden-ring/vendor/three.module.js",
+      "bytes": 1314681,
+      "sha256": "ce1fa418de16a19495a9f72495580e3015d7745c296d3ce0485897f902ddedfb"
+    },
+    {
+      "path": "game-files/fortnite/ASSET_CREDITS.md",
+      "bytes": 2934,
+      "sha256": "e5b7201932505d0e254854d388c3d6eb63790071d0f6b2262bb85f28d3c63b46"
+    },
+    {
+      "path": "game-files/fortnite/FEATURE_COVERAGE.md",
+      "bytes": 11183,
+      "sha256": "0203234b95c862f3da86237b5233ac7b560d94c7808c126748661d98d2d74459"
+    },
+    {
+      "path": "game-files/fortnite/README.md",
+      "bytes": 3440,
+      "sha256": "cbd0f3a3dad42dec4065fdf254a9e995a5ec24155806574a8ce2971eded0162a"
+    },
+    {
+      "path": "game-files/fortnite/REFERENCES.md",
+      "bytes": 3763,
+      "sha256": "b5710e91cc2a915c70c798d82fe2e5a8c221427df65188c8520c2ca70cfb2821"
+    },
+    {
+      "path": "game-files/fortnite/assets/foliage.png",
+      "bytes": 2572006,
+      "sha256": "b47b06cd0879280cb1919c6f949294bfa05477f613cefdfb97706c8159f46fe2"
+    },
+    {
+      "path": "game-files/fortnite/index.html",
+      "bytes": 11275,
+      "sha256": "7b800dee6a1758135a6d5094519520e562880d39b32e8abf3f022bb0c69f1777"
+    },
+    {
+      "path": "game-files/fortnite/src/airdrop.js",
+      "bytes": 1710,
+      "sha256": "b89591b87f727db64a797c30c41ba0e5e64eaaacad93f1ebf61c5ed58312e03a"
+    },
+    {
+      "path": "game-files/fortnite/src/audio.js",
+      "bytes": 2808,
+      "sha256": "f6381a9829c2200c75137c4172b55bd5d5a7835177416cf1a36cc9c7bb51a280"
+    },
+    {
+      "path": "game-files/fortnite/src/avatars.js",
+      "bytes": 12463,
+      "sha256": "d5e6e2db1bf2fb33803c1b826f188b4f80545e09f07fe7394d44ad44bc42f7f1"
+    },
+    {
+      "path": "game-files/fortnite/src/building.js",
+      "bytes": 9037,
+      "sha256": "7a32f025158a798122d88acbe21f3c90d417f60b8b417c4add444a65e395c6c3"
+    },
+    {
+      "path": "game-files/fortnite/src/character.js",
+      "bytes": 7604,
+      "sha256": "15f7beae65bc4fadc5edc7162638ad4491cfe64047b85a15ee74a074dce798c0"
+    },
+    {
+      "path": "game-files/fortnite/src/data.js",
+      "bytes": 7092,
+      "sha256": "78a538665126c019f1601e2698c37271ed2cb2aec25011e98505dffde7a5592c"
+    },
+    {
+      "path": "game-files/fortnite/src/detail.js",
+      "bytes": 7360,
+      "sha256": "d37048e8e719eef3164b2a28bf5b2510a97881ff40606856f3d907995c2196d4"
+    },
+    {
+      "path": "game-files/fortnite/src/main.js",
+      "bytes": 53500,
+      "sha256": "61c98bf9f64fff79a5cc474ce2de7b98b1c191f0e5ef15c6f062c517a6f21779"
+    },
+    {
+      "path": "game-files/fortnite/src/math.js",
+      "bytes": 2598,
+      "sha256": "c87ec49501415c27d22b68f89d07eda6047f5292196ac5c42a76b361efa558f1"
+    },
+    {
+      "path": "game-files/fortnite/src/post.js",
+      "bytes": 2542,
+      "sha256": "af2b9830ec8159f3d56365d878cc400b07f4ce237d0e21bc62953eee4c8cc6e2"
+    },
+    {
+      "path": "game-files/fortnite/src/render.js",
+      "bytes": 11652,
+      "sha256": "47e5df371b38a611d63bc27d3a117d97b94b843fc00b68913ce0574a3b7a37da"
+    },
+    {
+      "path": "game-files/fortnite/src/rules.js",
+      "bytes": 588,
+      "sha256": "c4ba0e20d9c4207ec75f9e3f76dfdb309c73ca4ed6811dc35ccc2e1295d42a18"
+    },
+    {
+      "path": "game-files/fortnite/src/ui.js",
+      "bytes": 22973,
+      "sha256": "6f9b000a913e169bd74dd12bce6c45d73ba2eda066be909cc76676eafc1d4b59"
+    },
+    {
+      "path": "game-files/fortnite/src/world.js",
+      "bytes": 43785,
+      "sha256": "917154803e4113f7babc0b302f284dd1cab34b6205b38dc525f32a6be1f45059"
+    },
+    {
+      "path": "game-files/fortnite/styles.css",
+      "bytes": 20731,
+      "sha256": "d996fedf54d6ab39b6a95c12166647aea187fc517b5513bdbd5d812a874d88a3"
+    },
+    {
+      "path": "game-files/fortnite/vendor/BufferGeometryUtils.js",
+      "bytes": 31781,
+      "sha256": "53d8fe1d2bf5a58549ea45077c14996bc8675f2c2fa9e2cdc6547ccb66be953c"
+    },
+    {
+      "path": "game-files/fortnite/vendor/THREE-LICENSE.txt",
+      "bytes": 1081,
+      "sha256": "4c40a1ef62450b857c3b2aaf294936304cd552d965fbcd9d32d4c5bcf4ba4454"
+    },
+    {
+      "path": "game-files/fortnite/vendor/three.module.js",
+      "bytes": 1314681,
+      "sha256": "ce1fa418de16a19495a9f72495580e3015d7745c296d3ce0485897f902ddedfb"
+    },
+    {
+      "path": "game-files/index.html",
+      "bytes": 3851,
+      "sha256": "a532024d6eed7efbea2f9d0d8bf8963f3901b43e3a20ed52224305e1d15196cc"
+    },
+    {
+      "path": "game-files/launcher/hub.css",
+      "bytes": 5189,
+      "sha256": "b9f48ac7a8fbb8bbfa58d39691a50a3a374eabd0fd7f73db1d5ff6917584641e"
+    },
+    {
+      "path": "game-files/launcher/hub.js",
+      "bytes": 3188,
+      "sha256": "73fb49928615b9e1192742e78d408c8431586cfe61248d99ab324f8753715ea3"
+    },
+    {
+      "path": "game-files/launcher/previews/elden-ring.png",
+      "bytes": 1735412,
+      "sha256": "0bec66f2d792df2e830d41bae99b3104e81d19b7f297425681245569695bcd77"
+    },
+    {
+      "path": "game-files/launcher/previews/fortnite.png",
+      "bytes": 152891,
+      "sha256": "e3d89df742995fe1a3e27cf356ba89f815a81b76d5a3bee8f856f2df0b65748a"
+    },
+    {
+      "path": "game-files/launcher/previews/subnautica.png",
+      "bytes": 1332492,
+      "sha256": "2bf82f87e94e43345f4bf93ecd2c9e4b49dc6968323c0b071d4303f2b3262054"
+    },
+    {
+      "path": "game-files/launcher/runtime/SOURCES.json",
+      "bytes": 860,
+      "sha256": "58ea119b7bd40983c5c5182fc268ee9b291483381abf3b080916a8b1caeff843"
+    },
+    {
+      "path": "game-files/launcher/runtime/windows-x64/LICENSE.txt",
+      "bytes": 160555,
+      "sha256": "ed34dd8e3f0a78dbaf00d0444ce8e285b015b765379c2e17880455f70370f8e9"
+    },
+    {
+      "path": "game-files/launcher/runtime/windows-x64/node.exe",
+      "bytes": 93381448,
+      "sha256": "5c976096e04e5c2c1f091938926234cc9fbebfe9787ddd149351b3b0ecc707b5"
+    },
+    {
+      "path": "game-files/launcher/server.mjs",
+      "bytes": 4558,
+      "sha256": "9cce51eb229d59aedbd0e8fdef455b77f2e538ae4be71f520d88ba9cb4fe5816"
+    },
+    {
+      "path": "game-files/subnautica/ASSETS.md",
+      "bytes": 3847,
+      "sha256": "dbf55b875d69f73b2561f4ace5c2fe54b05ce11d555049446e6413470fc00728"
+    },
+    {
+      "path": "game-files/subnautica/COVERAGE.md",
+      "bytes": 17499,
+      "sha256": "746fa6d68be3619b35f974ac7c419b743fca62496279966015f823715239e4c5"
+    },
+    {
+      "path": "game-files/subnautica/README.md",
+      "bytes": 5705,
+      "sha256": "6057fc47be3dd9bb650670c6117e4858a3201c418644f8c8aa352f0e41d88095"
+    },
+    {
+      "path": "game-files/subnautica/REFERENCES.md",
+      "bytes": 6300,
+      "sha256": "88e9fdca859030d257661be822ba1057a00e155cb11bac4d1d0dc7fa298ff236"
+    },
+    {
+      "path": "game-files/subnautica/WALKTHROUGH.md",
+      "bytes": 5174,
+      "sha256": "41c3c6def82ffb14d15687a2a21f085a976cf62c92fa96c31aa3e1074bb1384b"
+    },
+    {
+      "path": "game-files/subnautica/assets/cave-terrain.bin",
+      "bytes": 24655888,
+      "sha256": "79b7a456e257174e4bbafb73777ee05ecfe38c1f95bb6b8bd1dda4eaed3a97d8"
+    },
+    {
+      "path": "game-files/subnautica/assets/reef-rock.png",
+      "bytes": 3807625,
+      "sha256": "e0e6f0e857aa6cb84e31e59633d39514b3b3cef9e0f6eab2541d37dad5f72ca6"
+    },
+    {
+      "path": "game-files/subnautica/assets/sand.png",
+      "bytes": 3464793,
+      "sha256": "f0e7db0b6001d2b4237bf9c0a7b404b83d2598c950e8cbe4ffc59fcabbcdf2ae"
+    },
+    {
+      "path": "game-files/subnautica/index.html",
+      "bytes": 5756,
+      "sha256": "50b829a744bf399cc0b25f706dd98a4906530251a0772ba621d81fc3ebe42541"
+    },
+    {
+      "path": "game-files/subnautica/src/audio.js",
+      "bytes": 8162,
+      "sha256": "c769ffa45cca34ab7f24f73137391b2ca6a9f7a1eaf1441a378904d662142404"
+    },
+    {
+      "path": "game-files/subnautica/src/data.js",
+      "bytes": 19092,
+      "sha256": "94fe1e37b32aef5512af3eaccf7709d5c644440481287f9db19e227abe6c755e"
+    },
+    {
+      "path": "game-files/subnautica/src/demo.js",
+      "bytes": 13432,
+      "sha256": "15b3f4cb1300aa0f8323fba107a0db3c910d16bd11e1027081d1fb2fa1f08307"
+    },
+    {
+      "path": "game-files/subnautica/src/game.js",
+      "bytes": 79823,
+      "sha256": "38a5cc8ecf454b4835d39d764b304f75a04fcc7dc2a2685887e05109b527fb2a"
+    },
+    {
+      "path": "game-files/subnautica/src/leviathan.js",
+      "bytes": 6428,
+      "sha256": "7331f8fe9c65f24fef6fbc2099fc415c4c23027e1eb00d603c5ebb39c3767632"
+    },
+    {
+      "path": "game-files/subnautica/src/models.js",
+      "bytes": 25512,
+      "sha256": "7b04e4f37b1d61125ff18ec8697f38d915af16110942abb87e1626f78005fc6d"
+    },
+    {
+      "path": "game-files/subnautica/src/state.js",
+      "bytes": 9382,
+      "sha256": "40ee243e3c75aada2ffdcf50ae95993e3cb293992988b1f0852f800355b7d9e8"
+    },
+    {
+      "path": "game-files/subnautica/src/ui.js",
+      "bytes": 27302,
+      "sha256": "01c7dd3645b432907b6488ed308bcbe266787ed0766944b1ab24fb86b17ceb55"
+    },
+    {
+      "path": "game-files/subnautica/src/world.js",
+      "bytes": 26135,
+      "sha256": "2d965a49c4454ffa6520315c9ebdb4d9e61ea1814112e60733770894964d4831"
+    },
+    {
+      "path": "game-files/subnautica/style.css",
+      "bytes": 22110,
+      "sha256": "9ec4656dd5e288a6b485b73afff147848c5b019416811a804e5ec4a66d9b10c0"
+    },
+    {
+      "path": "game-files/subnautica/vendor/THREE-LICENSE.txt",
+      "bytes": 1081,
+      "sha256": "4c40a1ef62450b857c3b2aaf294936304cd552d965fbcd9d32d4c5bcf4ba4454"
+    },
+    {
+      "path": "game-files/subnautica/vendor/three.module.js",
+      "bytes": 1314681,
+      "sha256": "ce1fa418de16a19495a9f72495580e3015d7745c296d3ce0485897f902ddedfb"
+    }
+  ]
+}

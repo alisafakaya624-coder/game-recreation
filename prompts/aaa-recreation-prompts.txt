@@ -1,0 +1,454 @@
+----------------------------------------------------------------
+
+AAA RECREATION PROMPTS (Rocket League, Fortnite, GTA)
+
+Each prompt below is fully self-contained. Paste ONE whole block into
+the model. Do not combine them.
+
+----------------------------------------------------------------
+
+
+
+
+=================================================================
+ROCKET LEAGUE
+=================================================================
+
+Build a Rocket League recreation that runs in the browser. Deliver it as a SINGLE self-contained HTML file. You may load Three.js (r160 or newer, ES module via import map from unpkg or jsdelivr) and nothing else. NO external assets of any kind: no model files, no image textures, no audio files, no fonts beyond system fonts. Every mesh is built procedurally in code, every texture is generated on a canvas or in a shader, every sound is synthesized with the Web Audio API. It must run by double-clicking the file. No build tools.
+
+Implement the CORE section fully and robustly. Then implement as much of STRETCH as you can WITHOUT breaking the build. For anything stubbed or omitted, leave a clearly labeled comment (// STUB: ...). Comment the code thoroughly and structure it into clear modules (Renderer, Physics, Car, Ball, Arena, Input, Camera, AI, UI, Audio, Customization, Crowd, Effects).
+
+════════ NON-NEGOTIABLE CORRECTNESS RULES (check every one before you finish) ════════
+- Controls are NEVER reversed. W = forward, S = reverse/brake, A = steer LEFT, D = steer RIGHT, in the car's own frame as seen from the chase camera. Verify this by reasoning through the math of your steering sign against your camera orientation. Mirrored steering is an automatic fail.
+- Mouse look / camera never inverts unexpectedly. Air-roll left rolls the car to its left.
+- Nothing ever clips through anything. The car, ball, and NPC cars can never pass through walls, floor, ceiling, goalposts, or each other. Use continuous collision (sub-stepping at 120 Hz or higher, swept tests for the ball) so high-speed hits never tunnel.
+- The game never soft-locks. Every menu has a working Back. ESC always opens a pause menu. Resuming, restarting, and returning to main menu all work repeatedly without leaking state or doubling event listeners.
+- Deterministic fixed-timestep physics (accumulate delta, step at 120 Hz, interpolate render). Frame rate changes must not change car speed, jump height, or ball behavior.
+- Target 60 fps on a mid-range GPU (RTX 3060 class). Use instancing for crowd and repeated geometry.
+
+════════ MAIN MENU & FRONTEND (must feel like the real game) ════════
+- Animated title screen: your car slowly rotating on a lit showroom turntable, reflective floor, bloom, soft moving light sweeps, subtle particle haze. Title logo drawn in CSS/SVG with a sleek sporty style.
+- Menu items with hover sounds, click sounds, keyboard AND mouse navigation: PLAY, GARAGE, SETTINGS, CONTROLS, QUIT (quit returns to the title splash).
+- PLAY submenu: Exhibition vs bots with mode 1v1 / 2v2 / 3v3, bot difficulty (Rookie / Pro / All-Star), match length (5 min default, unlimited option), and a Free Play mode (no opponents, ball only, for practicing).
+- SETTINGS: master/SFX/music volume sliders, camera FOV, camera distance, height, angle, stiffness, swivel speed (the real game's camera settings), graphics quality preset (Low/Medium/High affecting shadows, bloom, crowd count, particle count), show FPS toggle. Settings persist in localStorage (wrapped in try/catch).
+- CONTROLS screen listing every binding, with rebinding support for keyboard keys.
+- Loading transition between menu and match: stadium name card and a quick fade, like the real game.
+
+════════ GARAGE / CAR CUSTOMIZATION ════════
+- Garage scene with the car on a turntable; drag with mouse to rotate it, scroll to zoom.
+- At least 4 bodies with distinct, recognizable silhouettes and correct proportions, modeled procedurally with smooth curved panels (lathe, extrude, and custom BufferGeometry, NOT stacked boxes):
+  - Octane-style: tall, short, rounded roof, upright cab, chunky rear.
+  - Dominus-style: long, low, flat muscle-car profile, wide nose.
+  - Fennec-style: boxy but beveled, compact, squared fenders.
+  - Breakout-style: sleek, wedge nose, low cockpit.
+  Each has proper wheel wells, windows with glass material, headlights, taillights, a rear exhaust/boost nozzle, and 4 separate wheel meshes that spin with speed and steer with input. Each body has its own hitbox preset (Octane / Dominus / Plank / Breakout proportions) that affects physics.
+- Customization categories that visibly update the car live: Primary color, Accent color (with a large swatch grid), Paint finish (Matte, Glossy, Metallic, Pearlescent, via material roughness/metalness/clearcoat), Decal (at least 5 procedural canvas-texture decals such as stripes, flames, lightning, hex, tiger), Wheels (at least 5 rim designs built procedurally), Boost trail (at least 5: standard flame, alpha-style glowing ribbon, sparkles, bubbles, plasma), Topper (at least 4: none, hat, halo, cone), Antenna (at least 4 flags/shapes), Goal explosion (at least 5, see Effects), Engine sound (at least 3 synthesized profiles).
+- Loadout saves to localStorage and is what you drive in the match. Team color (blue/orange) tints the primary color in matches like the real game.
+
+════════ ARENA (must be beautiful and correctly shaped) ════════
+- Real Rocket League proportions, scaled so the car feels right: field roughly 8192 x 10240 units in RL scale (use a consistent scale factor), goal about 1786 wide x 642 tall x 880 deep, ceiling about 2044 high.
+- The arena is a single continuous drivable surface: flat floor that curves smoothly up into the walls through a quarter-pipe radius ramp (NOT a hard 90 degree corner), walls curve smoothly into the ceiling, and the corners are rounded quarter-pipes too. The goal openings are cut into the back walls with rounded ramp edges around them. Build this as real curved collision geometry (analytic signed-distance function for the arena is strongly recommended: box with rounded edges, minus goal cavities), so the car can drive from floor up the ramp onto the wall and onto the ceiling seamlessly.
+- Field markings: center circle, midfield line, goal boxes, team-colored halves (blue side, orange side), glowing edge strips, the boost pad layout matching the real Standard map: 6 large boost pads (100 boost, 10 s respawn) in the corners and midfield sides, and 28 small pads (12 boost, 4 s respawn) in the real layout. Pads glow, spin particles, and visibly empty when taken.
+- Transparent-looking walls with a hexagonal energy-field shader that brightens near the ball and where the car touches.
+- The stadium around the field: multi-tier stands, roof structure, giant light rigs, jumbotron screens showing the score and a live replay-style view (render-to-texture), banners, animated ad-board LED strips, and a sky dome with a sunset or night gradient, volumetric-feeling light shafts, and distant city/mountain silhouettes.
+- Shaders & post: physically based materials, real-time shadows from the main stadium light, screen-space ambient occlusion or baked AO, bloom on emissives, subtle vignette, tone mapping (ACES), reflective glossy field with a subtle screen-space or planar reflection.
+
+════════ CROWD (must NOT look blocky) ════════
+- Thousands of spectators using InstancedMesh. Each spectator is a smooth humanoid built from capsules/spheres (rounded head, torso, arms) with a low-poly-but-smooth silhouette, NOT cubes. Vary height, shirt color (team colors weighted by side), skin tone, and hats.
+- Idle animation: sway, bob, arm movement driven in the vertex shader with per-instance phase offsets. On a goal the scoring team's side jumps and waves arms, the other side slumps. Camera flashes sparkle in the stands. Crowd noise is synthesized (filtered noise + swells) and roars on goals and near misses.
+
+════════ CAR PHYSICS & CONTROLS (the heart of the benchmark, be precise) ════════
+Keyboard layout (show it in the Controls screen):
+- W / S: throttle forward / reverse and brake.
+- A / D: steer left / right on the ground; yaw left / right in the air.
+- Mouse right click or SPACE: jump. Tap once for a single jump; press again within 1.5 s of leaving the ground for a second jump or dodge (flip).
+- Dodge: second jump while holding a direction does a flip in that direction (front flip, backflip, side flips, diagonals) with the correct impulse and flip cancel if S is pressed during a front flip.
+- Mouse left click or LEFT SHIFT: boost.
+- In the air: W / S pitch the nose down / up. A / D yaw. Q / E air roll left / right.
+- Holding the Air Roll modifier and pressing A / D rolls instead of yaws, exactly like the real game. Required binding: LEFT SHIFT + A / D = air roll (spin) while airborne, as requested. Because SHIFT is also boost, resolve this cleanly: when airborne, SHIFT + A/D performs air roll AND boost is moved to Left Mouse; OR provide a setting "Shift = Air Roll" (default ON) with boost on Left Mouse/B. Document the choice in the Controls screen. The roll direction must match the key: A rolls left, D rolls right.
+- CTRL or X: powerslide / handbrake (tighter turning, sliding).
+- E: toggle BALL CAM on/off (camera stays behind the car but looks at the ball). Show a small "BALL CAM" indicator in the HUD.
+- R or Backspace: reset to kickoff position in Free Play.
+- Gamepad support via the Gamepad API with the standard RL layout (bonus, but do not break keyboard).
+Physics requirements:
+- Car has mass, max ground speed around 1410 uu/s without boost and 2300 uu/s supersonic with boost, throttle and brake accelerations close to the real values, boost acceleration about 991 uu/s squared, boost drains about 33.3 per second, start of kickoff with 33 boost.
+- Supersonic state above 2200 uu/s: visible trail streaks, wind sound, and the car demolishes opponents it hits while supersonic (explosion, respawn after 3 s).
+- Wheels stick to whatever surface they touch: raycast each wheel against the arena SDF, align the car's up vector to the surface normal, apply a sticky force toward the surface so you can drive up the curved ramps onto walls and ceiling at speed. If you lose speed on a wall or ceiling you fall off naturally.
+- Suspension: 4 raycast wheels with spring and damper, so landings compress visibly and the car settles.
+- Jump: initial impulse plus a short hold-to-jump-higher window, like the real game. Jump off walls pushes away from the wall along its normal.
+- Dodge gives a burst of velocity and a quick rotation, then control returns.
+- Air control: pitch, yaw, roll torques with angular damping, max angular velocity cap, feels like the real game (quick but controllable).
+- Turtling and self-righting: if the car lands on its roof or side and wheels are not touching, pressing jump flips it back onto its wheels (the real game's auto-right behavior), and it also slowly rights itself on its own after about 1 s. The car can never get permanently stuck upside down.
+- Double boost: boost stacks correctly with pads. Picking up a pad while boosting keeps the flame going. Implement the classic double-jump + boost aerial so skilled players can fly.
+- Collisions between cars and cars/ball use the body's hitbox (oriented box), with proper restitution and friction. Ball hits have the real game's feel: extra impulse from the car's velocity toward the ball, so a hard hit sends the ball flying.
+
+════════ BALL ════════
+- Radius about 92.75 uu, mass lighter than cars, bounce restitution about 0.6, spin affects bounces, drag, max speed about 6000 uu/s.
+- Ball material: smooth sphere with a hexagonal panel pattern in a shader, glowing edge lines, and a subtle ground shadow plus a ball indicator circle on the floor/wall beneath it so players can judge height.
+- Ball never clips through walls, goal posts, or the crossbar at any speed.
+
+════════ CAMERA ════════
+- Chase camera with the real game's settings (FOV 110, distance 270, height 100, angle -3, stiffness 0.5 as defaults, all adjustable).
+- Ball cam on/off with smooth transitions. When ball cam is on the camera keeps the ball in frame. When off it looks where the car faces.
+- Camera never goes inside walls: collide the camera against the arena SDF and pull it in.
+
+════════ MATCH FLOW ════════
+- Kickoff: cars placed in the real kickoff spawn positions (diagonal, off-center, back center), 3-2-1-GO countdown with sound, ball dropped at center.
+- Scoreboard HUD: team scores, match clock, boost meter as a circular gauge in the bottom right showing 0 to 100, speedometer optional, ball cam indicator, player name tags above cars.
+- Overtime when tied at 0:00 (next goal wins). Match end screen with MVP, score, goals, saves, shots, assists, and buttons for Rematch and Main Menu.
+- Stats: track goals, assists, saves, shots, demos per player.
+
+════════ GOAL EFFECTS & REPLAY ════════
+- Goal line detection is exact (ball fully across the line).
+- Goal explosion at the ball's position using the scorer's selected explosion: huge particle burst, shockwave ring, screen shake, bloom flash, ball dissolves, nearby cars are blown back with a physics impulse, team-colored confetti, crowd roar, goal horn, the scoring team's side of the stadium lights flash.
+- At least 5 explosion styles (standard, fireworks, electric, blackhole implode-then-burst, voxel shatter).
+- After the goal, a short replay: record car and ball transforms for the last 6 seconds and replay them with a cinematic camera, with a "REPLAY" banner and a skip button, then return to kickoff.
+
+════════ BOT AI ════════
+- Bots for both teams with rotation logic: one attacks, one supports, one hangs back, rotating after a touch. They drive to the ball on predicted intercept points (simulate ball trajectory forward), avoid own goals, shadow defend, collect boost when low, do kickoff flips, and on higher difficulties hit aerials and wall hits. Bots obey the same physics and controls (no teleporting, no cheating speed).
+- Bots never get stuck on walls, upside down, or against each other; add a stuck detector that recovers.
+
+════════ AUDIO (all synthesized) ════════
+- Engine sound per profile that rises in pitch with speed, boost roar, supersonic wind, jump whoosh, dodge whoosh, ball hit thump scaled by impact force, wall hit, boost pad pickup chime, demolition explosion, goal horn, crowd ambience and roar, countdown beeps, menu hovers and clicks, and a short upbeat synth music loop in menus.
+
+════════ STRETCH ════════
+- Additional arenas (night rainy stadium, desert, underwater dome) with the same geometry and different theming.
+- Training packs (preset ball positions and shots).
+- Replay saving and free-camera replay viewer.
+- Split-screen 2 player local.
+- Rumble-style power-ups toggle.
+- Hoops or Dropshot variant using the same physics.
+
+Before finishing, re-read the NON-NEGOTIABLE CORRECTNESS RULES and fix anything that violates them. Output the full HTML file only.
+
+
+
+
+=================================================================
+FORTNITE (OG CHAPTER 1)
+=================================================================
+
+Build a Fortnite Battle Royale recreation (Chapter 1 OG era) that runs in the browser. Deliver it as a SINGLE self-contained HTML file. You may load Three.js (r160 or newer, ES module via import map from unpkg or jsdelivr) and nothing else. NO external assets of any kind: no model files, no image textures, no audio files. Every mesh is built procedurally in code, every texture is generated on a canvas or in a shader, every sound is synthesized with the Web Audio API. It must run by double-clicking the file. No build tools.
+
+Implement the CORE section fully and robustly. Then implement as much of STRETCH as you can WITHOUT breaking the build. For anything stubbed or omitted, leave a clearly labeled comment (// STUB: ...). Comment the code thoroughly and structure it into clear modules (Renderer, World/Terrain, POIs, Structures, Building, Destruction, Weapons, Inventory, Loot, Player, Characters/Animation, AI, Navigation, Storm, BattleBus, UI, Audio, Effects).
+
+════════ NON-NEGOTIABLE CORRECTNESS RULES (check every one before you finish) ════════
+- Controls are NEVER reversed. W = forward, S = back, A = strafe LEFT, D = strafe RIGHT relative to where the camera faces. Mouse right looks right, mouse up looks up (with an "invert Y" option OFF by default). Verify the signs of your movement vector math against camera yaw. Mirrored movement is an automatic fail.
+- Nothing clips through anything. The player and every NPC collide with terrain, buildings, trees, rocks, player builds, and each other. No walking through walls, no falling through the ground, no getting stuck inside geometry. Use capsule vs world collision with a spatial hash.
+- No teleporting. Every NPC visibly jumps from the bus, skydives, deploys a glider, and lands physically at a real spot, then walks/runs everywhere afterward.
+- NPCs never get permanently stuck. Stuck detection (no progress for 2 s) triggers: jump, build a ramp, edit around, or break the obstacle with the pickaxe, then re-path.
+- The game never soft-locks. ESC always opens a pause menu. Every menu has Back. Returning to lobby and starting a new match works repeatedly without leaking state or doubling listeners.
+- Fixed-timestep simulation (60 Hz logic), render interpolated. Target 60 fps on an RTX 3060 class GPU: use instancing, LOD, frustum culling, and AI level-of-detail (far NPCs simulate cheaply).
+
+════════ CHARACTER ART STYLE (important) ════════
+- NO blocky characters. Every humanoid (player, NPCs) is a smooth, stylized, Fortnite-proportioned character: slightly oversized head and hands, rounded forms built from capsules, lathe/tube geometry and custom BufferGeometry with smooth normals, subdivided so silhouettes are round. Face with eyes, brows, nose, mouth. Hair shapes. Distinct outfits built procedurally (at least 8 skins with recognizable OG vibes: a default soldier look, a dark ninja-style, a raven-style dark hooded skin, a colorful llama-costume style, a skull trooper style, a bright banana-suit style, a knight-armor style, a tactical camo style). Cel-ish stylized shading with rim light, matching Fortnite's look, not photoreal.
+- Skeletal animation built in code: a proper bone hierarchy (hips, spine, chest, neck, head, shoulders, elbows, hands, hips, knees, feet) with skinned or rigidly parented smooth mesh parts. Procedural animation blending for idle, walk, run, sprint, crouch, jump, fall, skydive (arms out), glider hold, swim-free landing, aim, fire recoil, reload, pickaxe swing, build placement, harvesting, knocked/death ragdoll-style fall, and at least 3 emotes (dance moves). Feet should plant (no ice skating: match stride to speed).
+
+════════ LOBBY & MENU (must feel like the real game) ════════
+- Lobby scene: your character standing on a stylized platform with the classic blue-purple gradient sky and floating clouds, idle animation, a rotating llama or supply drop beside them. Top tab bar: PLAY, LOCKER, ITEM SHOP (cosmetic display only, fake currency), CAREER/STATS, SETTINGS. Big yellow PLAY button with a mode selector (Solo / Duos with AI teammate / Squads with AI teammates) and a bot-count setting (default 99 NPCs).
+- LOCKER: pick outfit, back bling (at least 4), harvesting tool (at least 4 pickaxe designs), glider (at least 4), contrail (at least 3), emote (at least 3), all built procedurally and saved to localStorage.
+- SETTINGS: mouse sensitivity (and separate ADS sensitivity), invert Y (off), FOV, volume sliders, graphics preset (Low/Medium/High controlling shadows, draw distance, grass, NPC render distance), show FPS, and a full keybinds page with rebinding.
+- Matchmaking transition, then the pre-game STARTER ISLAND.
+
+════════ STARTER ISLAND (spawn island) ════════
+- Small floating/ocean island with a few structures, loot everywhere (weapons, ammo, mats), a place for everyone to warm up. All 100 players (you + 99 NPCs) spawn here, run around, shoot each other with no damage, emote, and build. A countdown timer (default 60 s, adjustable) at the top. When it ends, the screen fades and everyone is placed on the Battle Bus.
+
+════════ THE MAP (OG Chapter 1 layout) ════════
+- A large island (at least 2 km across at 1 unit = 1 m scale, heightmap terrain from inline noise shaped by hand-placed control points) with water all around, rivers, lakes, hills, mountains, cliffs, forests, and roads connecting towns. Layout inspired by the Chapter 1 Season 1-4 map with named POIs roughly in their real relative positions: Tilted Towers (dense tall buildings, clocktower), Pleasant Park (suburban houses, soccer field), Retail Row (shops, water tower), Salty Springs (houses on a hill), Fatal Fields (farm, barns, silos), Loot Lake (lake with an island house in the middle), Greasy Grove (diner, houses), Dusty Depot (3 warehouses), Lonely Lodge (cabins, tall wooden lookout tower), Wailing Woods (dense forest, maze-like bunker), Tomato Town (small restaurant and tunnel), Moisty Mire (swamp), Anarchy Acres, Flush Factory, Shifty Shafts (mine tunnels), Snobby Shores (villas), Haunted Hills (church, crypts), Junk Junction (junkyard with car stacks), Lucky Landing (asian-style town). Label them on the map.
+- Buildings are proper houses, not boxes: suburban 2 story houses with pitched roofs, shingles, gutters, porch, front door, interior walls, stairs, rooms with furniture (beds, couches, tables, fridges, TVs, bookshelves, toilets), attics, basements, garages with cars. Brick shops, wooden barns, metal warehouses, a tall clocktower, gas stations, trailers. Each piece is a separate destructible prop with a material type (wood, brick, metal).
+- Vegetation: stylized trees (several species) with smooth trunks and clumped leaf canopies, bushes, rocks, grass rendered with instancing and wind-sway vertex shader, flowers.
+- Loot sources: floor loot spawns, glowing gold chests that hum (open with E hold), ammo boxes, supply llamas, vending machines, supply drops that fall with a balloon mid-match.
+- Water shader for the ocean and lakes: waves, foam at shorelines, fresnel reflection, refraction tint. Players can wade in shallow water (slower); deep water is the map edge (OG style: you cannot swim, map edge kills or pushes back).
+- Sky: dynamic day with soft stylized clouds, sun, atmospheric fog in the distance, subtle day progression.
+
+════════ BATTLE BUS & DEPLOYMENT ════════
+- The Battle Bus: a detailed stylized blue bus with a big hot-air balloon above it (striped fabric, ropes, basket-style frame), bus windows, wheels, bumper, horn, and a flag. Flies across the map on a randomized straight path each match, drawn as a line on the map.
+- The player sits in the bus with a third-person view of the bus and map below, can look around, and press SPACE to "JUMP" once the bus doors open (after a few seconds). The bus reaches the far edge and everyone still aboard is auto-dropped.
+- NPCs make a decision based on personality: hot droppers jump early/at Tilted, others choose farther POIs weighted by distance from the bus line. They drop at staggered times along the path.
+- Skydiving: free fall, W dives faster, looks around, can steer toward a target. The glider auto-deploys at a fixed height above the terrain (and can be manually deployed higher with SPACE). Glide down slowly and steer. Landing plays a landing animation. NPCs follow the exact same physics: they visibly fall, deploy gliders, steer toward their chosen POI, and land on the ground or a roof. NO teleporting.
+
+════════ BUILDING (must be instant and correct) ════════
+- Grid of 5 m x 5 m cells with 4 m wall height, like the real game. Build pieces: Wall (Q or F1), Floor (F2), Ramp/Stairs (F3), Cone/Roof (F4). Also bind Z / X / C / V as alternatives. Left click places. Holding left click and moving builds continuously (turbo building).
+- Blueprint preview snaps to the grid in front of the player based on look direction, shows blue when valid and red when blocked or not enough materials.
+- Placement is INSTANT: the piece appears immediately, then its health "builds up" from low to full over the build time (wood fast, brick slower, metal slowest), with a visible building shimmer effect, exactly like the real game.
+- Materials: Wood (low max HP, fast), Brick (medium), Metal (high max HP, slowest). Cycle material with a key (right click in build mode or a dedicated key). Mats count shown in HUD, capped at 999 each.
+- Edit mode (G): select tiles on a piece to make doors, windows, half walls, arches, and ramp direction edits, then confirm. Reset edit works.
+- Structural integrity: pieces must connect to the ground through other pieces or terrain; if support is broken, disconnected pieces collapse and break.
+- Toggle build mode with B (or the piece hotkeys directly). Weapon mode returns with 1-6.
+
+════════ DESTRUCTION (everything breakable) ════════
+- EVERY placed prop is breakable: player builds, house walls, floors, roofs, stairs, furniture, fences, cars, trees, rocks, crates, bushes. Terrain itself is not breakable (like the real game).
+- Each object has HP and a material type. Pickaxe hits and bullets both damage it. Show floating blue damage numbers and a health bar on the targeted piece.
+- Harvesting: pickaxe hits give materials of the matching type (trees and wood give wood, rocks/brick give brick, cars/metal give metal), with a weak-point circle that appears on the object for bonus damage (hit it for double), like the real game.
+- On each hit the object visibly wobbles/shakes and spits small debris chips of its material. When destroyed it breaks into multiple physics fragments (chunks of wood, brick pieces, metal shards) that fly out, bounce on the ground with real restitution and friction, tumble, and settle, then fade out after a few seconds. Dust puff and breaking sound per material. Destroyed builds under your feet make you fall.
+
+════════ WEAPONS (proper, working, OG loadout) ════════
+- Rarity colors: Common (gray), Uncommon (green), Rare (blue), Epic (purple), Legendary (gold) with stat scaling per rarity.
+- At least these weapons, each with a procedurally built model that looks like its real counterpart, correct fire rate, damage, headshot multiplier, magazine size, reload time, spread/bloom, and falloff: Assault Rifle (SCAR/M4 style), Burst AR, Pump Shotgun, Tactical Shotgun, SMG, Suppressed SMG, Pistol, Revolver, Hunting Rifle, Bolt-Action Sniper (with scope overlay, bullet drop and travel time), Rocket Launcher (visible rocket, smoke trail, explosion with radius damage that destroys builds), Grenade Launcher, Grenades, Minigun.
+- Consumables: Bandages, Med Kit, Small Shield Potion, Big Shield Potion, Slurp Juice, Chug Jug with use timers and progress bars.
+- Hitscan for most guns with bloom (spread grows while firing, shrinks when crouching/still, first-shot accuracy), projectile for rockets/grenades/snipers. Aim down sights on right click with zoom and reduced spread. Muzzle flash, tracers, shell ejection, bullet impact decals and sparks per material, hitmarkers (white body, yellow headshot), damage numbers above targets (blue for shield, white for health, yellow for headshot).
+- Health (100) and Shield (100) bars. Knock/elimination: in Solo you are eliminated at 0 HP, drop all loot in a loot explosion; in Duos/Squads you get knocked and crawl, can be revived by teammates.
+- Inventory: 5 slots plus pickaxe slot, 1-5 to swap, mouse wheel cycles, drop with a key, pick up with E, ammo types (light, medium, heavy, shells, rockets). Loot glows by rarity with a light beam on the ground.
+
+════════ STORM ════════
+- Circular storm with the real phase structure: a visible safe circle (white on map), then a shrinking purple storm wall. Around 9 phases with wait timer then shrink timer, damage per tick increasing each phase (1, 1, 2, 5, 8, 10, 10...). The storm wall is a tall animated purple swirling shader cylinder with lightning; inside the storm the screen gets a purple tint, heavy fog, and ambient thunder.
+- HUD shows the storm timer, distance to safe zone, and players remaining.
+
+════════ NPC AI (must be smart) ════════
+- 99 NPCs, each with a personality (aggression, building skill, accuracy, loot greed, drop preference).
+- Navigation: build a navigation grid/graph over the map (terrain walkable slope, buildings with doors and stairs as links) and use A* with path smoothing. Paths go through doors and up stairs, not through walls. NPCs understand interiors and roofs.
+- NPCs land, loot buildings and chests, pick up better weapons, heal when hurt, and gather materials by pickaxing trees, rocks, and walls.
+- Storm awareness: each NPC checks the next circle and its travel time, starts moving toward the safe zone BEFORE the storm reaches them (with margin based on distance and speed), and if caught outside heals and runs in. They never idle outside the zone waiting to die.
+- Combat: detect enemies by line of sight and sound (gunshots), take cover, strafe, crouch, use the right weapon for the range (shotgun close, AR mid, sniper long), aim with personality-based accuracy and reaction delay, reload behind cover, and fight each other, not only the player. Third partying happens naturally.
+- NPC building: when shot in the open, they build a wall or a 1x1 box (4 walls plus ramp/cone) for cover. They build ramps to take high ground and to climb cliffs or reach roofs, and they build to cross gaps. Skilled NPCs do quick ramp rushes. Their builds are real build pieces that can be shot and broken.
+- They never get stuck (see rules). They never shoot through walls they cannot see through.
+- Killfeed shows "NPC_Name eliminated NPC_Name with a Pump Shotgun" for every elimination across the whole match.
+
+════════ PLAYER CONTROLS (show all in the keybinds page) ════════
+- WASD move (correct directions), mouse look, SPACE jump, LEFT SHIFT sprint (OG allowed sprint via toggle; implement a walk/sprint), CTRL crouch, E interact/pick up/open chest (hold), R reload, 1-5 weapon slots, mouse wheel cycle, left click fire/place, right click aim/cycle material in build mode, Q/F1 wall, F2 floor, F3 ramp, F4 cone, Z/X/C/V alternative build keys, G edit, B build mode, M map, TAB inventory, T emote wheel, ESC pause.
+- Third-person over-the-shoulder camera like Fortnite (character offset left, crosshair in center), camera collides with walls and never clips inside geometry.
+- Fall damage from high falls, but landing from the glider does none.
+
+════════ HUD & UI ════════
+- Minimap in the top right with storm circle and markers, full map (M) with POI names, bus path, storm circles, and a marker you can place. Players remaining, kills, storm timer. Health and shield bars bottom left, inventory slots bottom right with rarity backgrounds and ammo counts, materials counter with the three material icons, compass bar at the top, killfeed on the left, crosshair that shows bloom.
+- Victory Royale screen on winning with the classic celebration, placement screen when eliminated, spectate the killer, and a match summary (placement, kills, damage, materials gathered, XP), then return to lobby.
+
+════════ AUDIO (all synthesized) ════════
+- Distinct gun sounds per weapon with punchy transients (noise bursts plus filtered low thump, tail reverb by distance and indoors/outdoors), sniper crack and echo, rocket launch whoosh and explosion boom, reload clicks, shell drop tinks, pickaxe thunk per material, build placement sound per material, break sounds per material, chest hum that gets louder as you approach, chest open jingle, footsteps with directional 3D panning (Web Audio PannerNode) so you can hear enemies approaching, bus horn, glider wind, storm rumble, healing sounds, elimination sound, lobby music loop.
+
+════════ STRETCH ════════
+- Vehicles (golf cart, shopping cart), launch pads, bounce pads, traps.
+- Replay/spectate free camera.
+- Day-night cycle and weather.
+- Playground mode (no storm, infinite mats).
+- Duos/Squads AI teammates who follow pings.
+
+Before finishing, re-read the NON-NEGOTIABLE CORRECTNESS RULES and fix anything that violates them. Output the full HTML file only.
+
+
+
+
+=================================================================
+GRAND THEFT AUTO (GTA V STYLE)
+=================================================================
+
+Build a Grand Theft Auto V style open-world recreation that runs in the browser. Deliver it as a SINGLE self-contained HTML file. You may load Three.js (r160 or newer, ES module via import map from unpkg or jsdelivr) and nothing else. NO external assets of any kind: no model files, no image textures, no audio files. Every mesh is built procedurally in code, every texture is generated on a canvas or in a shader, every sound is synthesized with the Web Audio API. It must run by double-clicking the file. No build tools.
+
+Implement the CORE section fully and robustly. Then implement as much of STRETCH as you can WITHOUT breaking the build. For anything stubbed or omitted, leave a clearly labeled comment (// STUB: ...). Comment the code thoroughly and structure it into clear modules (Renderer, Sky/Weather, World/Streaming, City, Town, Beach, Roads/Traffic, Water, Humans/Rig/Animation, Pedestrian AI, Police/Wanted, Vehicles/Physics, Weapons, Player, Camera, UI/HUD, Phone, Audio, Effects).
+
+════════ NON-NEGOTIABLE CORRECTNESS RULES (check every one before you finish) ════════
+- Controls are NEVER reversed. On foot: W forward, S back, A left, D right relative to the camera. In a car: W accelerate, S brake/reverse, A steers LEFT, D steers RIGHT. When reversing the car still turns the way the front wheels point (like a real car), not mirrored input. Mouse right looks right. Verify every sign in your steering and movement math against your camera orientation. Mirrored steering is an automatic fail.
+- Nothing clips through anything. Player, peds, and vehicles collide with buildings, props, terrain, each other. No cars sinking into the road or driving through walls. Use sub-stepped physics (at least 120 Hz for vehicles) and swept tests for fast projectiles.
+- Nothing teleports visibly. Peds and traffic are spawned out of the camera's view and despawned out of view only.
+- NPCs never get stuck. Stuck detection re-paths or (for cars) reverses and steers around.
+- ESC always opens a pause menu (map, settings, controls, resume, quit to title). No soft locks. Restarting after death works repeatedly without leaking state.
+- Fixed-timestep simulation, interpolated rendering. Target 60 fps on an RTX 3060 class GPU: instancing for buildings, windows, trees, streetlights, peds at distance; LOD on everything; frustum culling; chunked world streaming.
+
+════════ HUMAN MODELS (the hardest part, do not cut corners) ════════
+- NO blocky characters. Humans must look as realistic as possible from procedural geometry: build the body as a single smooth skinned mesh (generate the torso, limbs, neck from lofted cross-sections along the skeleton, with anatomical proportions: 7.5 heads tall, shoulders wider on men, hips wider on women, tapered limbs, knees, elbows, calves, visible chest/shoulder shape, hands with fingers, feet with shoes). Head with modeled skull shape, jaw, nose, ears, eye sockets with eyeballs, lips, eyebrows, and hair meshes (several styles: short, buzz, long, ponytail, bald, beard/stubble).
+- Skin shader with subsurface-scattering approximation (wrap lighting plus reddish scatter), specular, subtle normal detail from a canvas-generated noise normal map. Clothing materials distinct from skin: cotton shirts, denim jeans, leather jackets, suits, hoodies, dresses, shorts, bikinis/swim trunks at the beach, police uniforms, with folds suggested by procedural normal maps.
+- Variety: body types (slim, average, heavy, muscular), heights, skin tones across the full human range, ages (young adult to elderly with gray hair and slight posture change), genders, and outfits tied to the location (business attire downtown, casual in the town, swimwear at the beach, joggers, construction workers with hard hats, police, paramedics). At least 30 visually distinct pedestrian combinations.
+- Full skeleton (hips, spine x3, neck, head, clavicles, upper/lower arms, hands with finger curls, thighs, shins, feet, toes) with procedural animation: idle breathing and weight shifts, walk, jog, sprint, crouch, jump, fall, climb over low walls, swim, aim (upper body blends with locomotion), shoot recoil, reload, punch combos, getting hit reactions, stumble, flee (arms up, panicked run), cower, sit on benches, talk on phone, smoke, lean on walls, dance, sunbathe lying down, and ragdoll death/knockdown. Foot IK so feet plant on stairs and slopes. Locomotion speed matches stride (no foot sliding).
+- Ragdoll physics: when shot, hit by a car, or exploded, the character becomes a physics ragdoll (connected rigid bodies with joint limits) that tumbles, collides with the ground and cars, and settles naturally. Getting up animation if not dead.
+
+════════ WORLD (tall city, a town, a beach) ════════
+- A world at least 3 km x 3 km, streamed in chunks, with three distinct regions connected by highways and a coastal road:
+  1. DOWNTOWN CITY (Los Santos style): a real grid of streets with sidewalks, crosswalks, lane markings, traffic lights that cycle and that traffic obeys, street lamps, benches, trash cans, hydrants, bus stops, newspaper boxes, palm trees along avenues. Skyline of tall towers (many 40 to 80+ floors) with varied architecture: glass curtain walls with reflective shaders, stepped art-deco towers, concrete office blocks, a tallest landmark tower with a spire, rooftop details (AC units, antennas, helipads, water tanks). Lit windows at night with random on/off patterns via shader. Alleys, parking garages, a freeway overpass with on/off ramps.
+  2. SMALL TOWN (Sandy Shores / Paleto Bay style): low buildings, a gas station, diner, motel, trailers, houses with yards and fences, a water tower, a main street, dusty dirt roads, rolling hills and dry grass around it.
+  3. BEACH (Vespucci / Del Perro style): wide sand beach, lifeguard towers, a pier with a small amusement area (Ferris wheel that rotates), boardwalk with shops, palm trees, volleyball nets, parked bikes, umbrellas and towels with peds sunbathing, surfers, joggers on the boardwalk, and the ocean.
+- Terrain: hills behind the city with a sign-like landmark and winding roads, a mountain in the distance.
+- Every region populated with NPCs where they belong doing appropriate activities (see Pedestrian AI).
+
+════════ WATER (realistic) ════════
+- Ocean shader with multiple Gerstner wave layers, correct normals, fresnel reflection of the sky, refraction/depth color (turquoise shallows to deep blue), animated foam where waves meet the shore and around objects, sun specular glints, and subsurface light in wave crests. Waves roll onto the beach and wash up the sand with a wet-sand darkening line.
+- Buoyancy: cars that drive into the water float briefly, tilt, and sink. The player can swim (swim animation, stamina) and dive. Splash particles on entering water. Boats (STRETCH) use the same buoyancy.
+- Underwater: blue tint, caustics on the seabed, muffled audio.
+
+════════ LIGHTING, SHADERS & ATMOSPHERE ════════
+- Dynamic time of day (a full day in about 24 real minutes, adjustable in settings): physically based sky with Rayleigh/Mie scattering, sun and moon, stars at night, golden hour lighting, and a sunset that looks like GTA V's warm orange haze over Los Santos.
+- Cascaded or high-quality shadows from the sun, ambient occlusion (SSAO), bloom, ACES tone mapping, subtle depth of field at distance, motion blur on fast driving (toggleable), atmospheric fog with height falloff, heat haze on roads at midday.
+- Physically based materials everywhere: car paint with clearcoat and metallic flake, glass with reflections, wet asphalt when it rains (puddles reflect), chrome.
+- Night: streetlights pool on the road, car headlights and taillights are real light sources (limit count with nearest-N), neon signs, lit windows.
+- Weather: clear, cloudy, rain (rain particles, splashes, wet roads, reduced grip), fog. Weather changes over time.
+
+════════ VEHICLES (lots of cars, real physics) ════════
+- At least 15 distinct procedurally modeled vehicles with smooth curved bodies (no boxes): compact car, sedan, luxury sedan, sports car, supercar, muscle car, SUV, pickup truck, van, taxi (yellow), police cruiser (with working lightbar and siren), ambulance, bus, sports bike/motorcycle, and a lowrider. Each has proper wheel wells, separate wheels that spin and steer, doors that open (for enter/exit animations), glass, headlights, taillights, brake lights that light up when braking, reverse lights, indicators, license plates (canvas text), interior with seats and steering wheel.
+- Random paint colors per vehicle, dirt level that accumulates, and body damage: dents (vertex deformation at impact points), shattered windows, bumpers and doors that can detach, smoke from the engine when heavily damaged, fire and explosion when destroyed (ragdolls nearby, burned-out husk remains).
+- VEHICLE PHYSICS (be precise):
+  - Weight and inertia: each vehicle has a mass and an inertia tensor. Heavy vehicles accelerate slowly, carry momentum, and take longer to stop. Light cars feel nimble.
+  - Suspension travel: 4 raycast wheels, each with spring stiffness, damping (separate bump/rebound), max travel, and anti-roll bars. The body visibly rolls in turns, pitches forward (nose dive) under braking, squats under acceleration, and bounces over curbs, bumps, and potholes (add potholes and speed bumps to roads). Cars react dynamically to sharp steering, not glued to the road.
+  - Weight transfer: normal load per wheel changes with acceleration and cornering, and that load affects each tire's grip.
+  - Tire model: slip-angle and slip-ratio based (simplified Pacejka curve), so pushing too hard causes understeer or oversteer, and the handbrake (SPACE) locks rear wheels to start a drift. Drifting is controllable with countersteer and throttle. Tire smoke and skid marks (decal ribbons) when sliding. Burnouts when flooring from standstill.
+  - Drivetrain: RWD/FWD/AWD per vehicle, engine torque curve, automatic gearbox with gear changes you can hear, top speed per class.
+  - Surface grip: asphalt, dirt, grass, sand (much less grip at the beach), wet roads in rain.
+  - Collisions between vehicles are impulse-based and use mass (a bus shoves a compact car). Air control is minimal. Cars that flip onto their roof can be rolled back with A/D if stuck, like GTA.
+  - Motorcycles lean into turns and can do wheelies.
+- Car camera: chase camera with lag and look-behind (C), mouse orbit that recenters, first-person/hood view toggle (V). Speed-based FOV increase.
+
+════════ CARJACKING & ENTER/EXIT (with proper animations) ════════
+- Press F near a vehicle: the player walks to the driver door, opens it (door swings on its hinge). If the car is empty, they get in, close the door, and drive. If there is a driver, the player grabs them, drags/throws them out onto the road (ragdoll-ish tumble then they get up), gets in, and drives off. The ejected driver reacts: flees, curses, calls police, or sometimes fights back.
+- Press F again while stopped to exit (open door, step out). Exiting at speed makes the player bail out and roll on the ground.
+- Locked parked cars: the player smashes the window with an elbow (glass shatter) and hotwires (short animation), like GTA V.
+- Stealing a car in front of witnesses or police raises the wanted level.
+
+════════ WEAPONS & WEAPON WHEEL ════════
+- Hold TAB (or Q) to open a radial weapon wheel that slows time, with categories, ALL unlocked with ammo: Fists, Knife, Baseball Bat, Pistol, Combat Pistol, Micro SMG, SMG, Assault Rifle, Carbine Rifle, Pump Shotgun, Sawed-off Shotgun, Sniper Rifle (scope, bullet drop, travel time), Minigun, Grenade, Molotov (fire spreads on the ground), Sticky Bomb (detonate with G), and Rocket Launcher (RPG with a visible rocket, smoke trail, huge explosion that flips and destroys cars and ragdolls peds). Mouse wheel cycles within a slot.
+- Each weapon has a procedurally modeled mesh resembling its real counterpart, is held correctly with both hands via arm IK, and has correct fire rate, damage, spread, recoil, magazine, reload animation and time.
+- Aim with right mouse (over-the-shoulder camera tightens), free aim with a reticle, hit reactions on peds by body part (legshot stumbles, headshot kills), blood decals (tasteful), bullet impacts with sparks/dust/glass shards per surface, muzzle flash, tracers, shell casings, explosions with fireball, smoke column, shockwave, debris, scorch decal, camera shake, and physics impulse on nearby objects.
+- Melee: punch combos, bat swings with knockdown.
+- Street props (lamp posts, hydrants that spray water, fences, trash cans, bins) are knocked over by cars and explosions with physics.
+
+════════ PEDESTRIAN AI (realistic, alive city) ════════
+- Pedestrians walk on sidewalks using a navigation graph, wait at crosswalks, cross on the walk signal, enter and exit buildings (doors), sit on benches, chat in pairs with gestures, talk on phones, jog, walk dogs (procedurally modeled dog with 4-leg gait), sunbathe and play volleyball at the beach, swim in the shallows, surf, pump gas at the gas station in town, sit outside the diner, and do construction work downtown.
+- Reactions: gunshots nearby cause screaming and fleeing (run away from the source, take cover, cower), some peds pull out phones to film or call the police, tough peds fight back or pull guns. Getting bumped makes them shove or complain. A car driving on the sidewalk makes them dive out of the way. Seeing a dead body makes them scream and run.
+- Traffic AI: cars follow lanes, obey traffic lights and stop signs, keep distance, change lanes, turn at intersections, honk when blocked, swerve to avoid the player, react to gunfire by speeding off, and pull over for police sirens. Traffic density varies by region and time of day.
+- Voice barks: synthesized short vocal-like sounds (formant synthesis) for screams, shouts, and grunts.
+
+════════ WANTED SYSTEM & POLICE ════════
+- 5 star wanted level shown in the top right. Crimes raise stars: carjacking, hitting peds, shooting, killing, attacking police. Police respond with cruisers that chase with sirens, PIT maneuvers, roadblocks at higher levels, officers on foot who take cover and shoot, and a helicopter at 3+ stars with a searchlight at night.
+- Line-of-sight search: when out of sight of police, stars flash and a search radius appears on the minimap; escape it to lose the wanted level.
+- Busted and Wasted screens (GTA style desaturated slow-motion with the big text), respawn at the hospital or police station.
+
+════════ PLAYER ON FOOT ════════
+- WASD move (correct directions), SHIFT sprint with stamina, CTRL crouch/stealth, SPACE jump and climb/vault over low walls and fences, F enter/exit vehicles, R reload, left click shoot/punch, right click aim, TAB weapon wheel, E interact/cover (snap to cover against walls and peek), C look behind, V camera mode, M map, ESC pause.
+- Third-person camera behind the right shoulder that collides with walls, smooth follow, mouse orbit.
+- Health and armor, health regeneration up to half, falling damage.
+
+════════ HUD, MAP & UI ════════
+- Title screen with a GTA-style loading screen: stylized painted artwork of a character composed procedurally (canvas illustration with bold outlines) and tips text, then the game.
+- Minimap (bottom left) that rotates with the player, shows roads, a GPS route to a placed waypoint (right click on the full map to place, route follows roads using A* on the road graph), health/armor bars under it, and police blips.
+- Full pause map with region names (Downtown, the Town, the Beach), zoom and pan, and legend.
+- Money counter (earn from robbing peds / stores in STRETCH), wanted stars, weapon and ammo display, area name and street name popup when entering a new zone, vehicle name popup when entering a car.
+- Settings: mouse sensitivity, invert Y (off by default), FOV, volume sliders, graphics preset, time-of-day speed, traffic/ped density, motion blur toggle, show FPS. Saved to localStorage.
+- Phone (up arrow) with a few working apps: camera (screenshot mode), contacts (call a taxi that drives to you), and a cheat input (e.g., spawn a car, give all weapons, change weather).
+
+════════ AUDIO (all synthesized) ════════
+- Engine sounds per vehicle class (layered oscillators with RPM-driven pitch, gear shifts, exhaust pops), tire squeal when sliding, collision crunches scaled by impulse, glass shatter, sirens (wail and yelp), horns, gun sounds per weapon with distance-based echo and indoor/outdoor reverb, rocket launch and explosion booms, fire crackle, footsteps per surface, ocean waves and seagulls at the beach, city ambience (distant traffic, horns, chatter), wind in the hills, rain, thunder, and a car radio that plays a simple procedurally generated music loop with a few station styles (switch with a key).
+
+════════ STRETCH ════════
+- Boats and jet skis with buoyancy, a helicopter and a small plane with flight physics.
+- Store robberies, ATM, clothing store to change outfits.
+- Simple missions (deliver a car, escape the cops, race checkpoints).
+- Switch between 3 protagonists with a cinematic sky-zoom transition.
+- Interiors you can enter (a convenience store, an apartment).
+
+Before finishing, re-read the NON-NEGOTIABLE CORRECTNESS RULES and fix anything that violates them. Output the full HTML file only.
+
+
+
+
+
+=================================================================
+GRAND THEFT AUTO VI STYLE (NEW YORK STYLE CITY)
+=================================================================
+
+Build a next-generation Grand Theft Auto VI style open-world recreation that runs in the browser, set in a MADE-UP city inspired by New York (NOT Florida, NOT Vice City). Deliver it as a SINGLE self-contained HTML file. You may load Three.js (r160 or newer, ES module via import map from unpkg or jsdelivr) and nothing else. NO external assets of any kind: no model files, no image textures, no audio files. Every mesh is built procedurally in code, every texture is generated on a canvas or in a shader, every sound is synthesized with the Web Audio API. It must run by double-clicking the file. No build tools.
+
+This should feel like a generational leap over GTA V: denser crowds, richer lighting, more lifelike humans, more detailed vehicles, and a city that feels alive.
+
+Implement the CORE section fully and robustly. Then implement as much of STRETCH as you can WITHOUT breaking the build. For anything stubbed or omitted, leave a clearly labeled comment (// STUB: ...). Comment the code thoroughly and structure it into clear modules (Renderer, Sky/Weather, World/Streaming, Boroughs, Town, Beach, Roads/Traffic, Subway, Water, Humans/Rig/Animation, Crowd AI, Police/Wanted, Vehicles/Physics, Weapons, Player/Protagonists, Camera, UI/HUD, Phone/Social, Audio, Effects).
+
+════════ NON-NEGOTIABLE CORRECTNESS RULES (check every one before you finish) ════════
+- Controls are NEVER reversed. On foot: W forward, S back, A left, D right relative to the camera. In a car: W accelerate, S brake/reverse, A steers LEFT, D steers RIGHT. When reversing, the car still turns the way the front wheels point (like a real car), not mirrored input. Mouse right looks right, mouse up looks up (invert Y OFF by default). Verify every sign in your steering and movement math against your camera orientation. Mirrored steering is an automatic fail.
+- Nothing clips through anything. Player, peds, and vehicles collide with buildings, props, terrain, each other. No cars sinking into the road or driving through walls. Use sub-stepped physics (at least 120 Hz for vehicles) and swept tests for fast projectiles.
+- Nothing teleports visibly. Peds and traffic are spawned out of the camera's view and despawned out of view only.
+- NPCs never get stuck. Stuck detection re-paths or (for cars) reverses and steers around.
+- ESC always opens a pause menu (map, settings, controls, resume, quit to title). No soft locks. Restarting after death works repeatedly without leaking state.
+- Fixed-timestep simulation, interpolated rendering. Target 60 fps on an RTX 3060 class GPU: instancing for buildings, windows, trees, streetlights, peds at distance; LOD on everything (including impostor billboards for far crowds and skyscrapers); frustum culling; chunked world streaming.
+
+════════ THE CITY: "NEW HARBOR" (made-up, New York inspired) ════════
+Invent a fictional city called New Harbor with its own neighborhood names, street names, brands, and landmarks. It should instantly read as New York style without copying real names. A world at least 3 km x 3 km, streamed in chunks, with these regions connected by bridges, tunnels, avenues, an elevated highway, and a subway:
+  1. MIDTOWN ISLAND (Manhattan style): a dense, tall grid of long avenues and short cross streets, one diagonal boulevard that cuts across the grid, and a bright billboard-plaza intersection covered in animated LED screens and neon (Times Square style, with procedurally generated fake ads). Skyscrapers of many styles: art-deco spires, glass supertall towers (80 to 120+ floors) with reflective curtain-wall shaders, pre-war brick apartment blocks with fire escapes and water towers on the roofs, brownstone rows with front stoops, a tallest landmark tower with a lit crown. Yellow taxis everywhere, food carts with steam, hot dog stands, newsstands, subway entrances with green globe lamps, scaffolding on buildings, steam rising from manhole covers, hydrants, parking meters, delivery trucks double parked.
+  2. A BIG CENTRAL PARK: a long rectangular park in the middle of the island with winding paths, a lake with rowboats, stone bridges, a reservoir, lawns with people picnicking and playing frisbee, joggers, cyclists, horse carriages, buskers, benches, lamp posts, and dense trees.
+  3. FINANCIAL DISTRICT at the island's tip: narrow canyon streets, a stock-exchange style building with columns, a made-up bronze animal statue, business people in suits rushing, a waterfront plaza with a ferry terminal and a view of a giant made-up harbor statue on a small island.
+  4. THE OUTER BOROUGH (Brooklyn / Queens style) across a river, reached by at least two big suspension bridges (stone towers with cables, pedestrian walkway, traffic on the deck) and one tunnel: brownstones, warehouses turned into lofts, graffiti walls, an elevated subway line running above a street, bodegas, laundromats, basketball courts with games going on, a bar strip with neon.
+  5. A SMALL TOWN upstate (Hudson Valley style): a quiet main street with a diner, general store, gas station, church with a steeple, clapboard houses with porches and picket fences, a small river with a covered bridge, forested hills with autumn colored trees, winding two-lane roads, and a train station.
+  6. A BEACH & BOARDWALK (Coney Island style): a wide sand beach, wooden boardwalk with arcades and food stands, an old amusement park with a working Ferris wheel and a wooden roller coaster (cars that actually run along the track), a pier, lifeguard stands, people sunbathing, swimming, playing volleyball, and seagulls.
+  7. THE HARBOR & RIVERS: busy water with ferries, tugboats, and cargo ships moving on paths, piers, cranes and shipping containers at a port.
+- SUBWAY: at least one working subway line with underground stations (tiled walls, platforms, turnstiles, peds waiting) and an elevated section. Trains run on a schedule, stop at stations, doors open, peds get on and off. The player can ride it as fast travel and can walk the tunnels.
+- Every region is populated with NPCs where they belong, doing appropriate activities (see Crowd AI).
+
+════════ HUMAN MODELS (the hardest part, do not cut corners) ════════
+- NO blocky characters. Humans must look as realistic as possible from procedural geometry: build the body as a single smooth skinned mesh (generate the torso, limbs, and neck from lofted cross-sections along the skeleton, with anatomical proportions about 7.5 heads tall, shoulders wider on men, hips wider on women, tapered limbs, knees, elbows, calves, chest and shoulder shape, hands with fingers, feet with shoes). Head with modeled skull shape, jaw, cheekbones, nose, ears, eye sockets with eyeballs that look at things, eyelids that blink, lips, eyebrows, and hair meshes (many styles: short, fade, braids, curly, long, ponytail, bun, bald, beards, stubble).
+- Skin shader with a subsurface-scattering approximation (wrap lighting plus reddish scatter), specular with oily highlights, subtle pore and wrinkle detail from canvas-generated normal maps. Clothing materials distinct from skin with procedural normal-mapped folds: puffer jackets, trench coats, hoodies, suits, jeans, sneakers, boots, dresses, gym wear, beanies, caps, scarves in cold weather, swimwear at the beach, police uniforms, construction vests, chef whites, delivery rider outfits.
+- Variety: body types, heights, the full range of skin tones, ages from young adults to elderly (gray hair, slower gait, some with canes), genders, and outfits that depend on location, weather, and time of day. At least 40 visually distinct pedestrian combinations. No two neighboring peds look identical.
+- Two playable protagonists (GTA VI style duo): a man and a woman with distinct faces, builds, hair, outfits, walk styles, and voices. Switch between them with a key; the other one becomes an AI partner who follows you, gets in cars with you, and helps in fights.
+- Full skeleton (hips, spine x3, neck, head, jaw, eyes, clavicles, upper/lower arms, hands with finger joints, thighs, shins, feet, toes) with procedural animation and smooth blending: idle breathing and weight shifts, walk, jog, sprint, crouch, jump, fall, climb, vault over fences and low walls, swim, aim (upper body blends with locomotion), shoot recoil, reload, punch and kick combos, hit reactions per body part, stumble, flee (panicked run), cower, sit on benches and stoops, eat street food, talk on phone, take selfies, smoke, lean on walls, dance, sunbathe lying down, play basketball, jog with earbuds, hail a taxi with a raised arm, and ragdoll death and knockdown. Foot IK on stairs, curbs, and slopes. Stride matches speed (no foot sliding). Hand IK so hands grip weapons, steering wheels, and door handles.
+- Ragdoll physics: when shot, hit by a car, or exploded, characters become physics ragdolls (connected rigid bodies with joint limits) that tumble, collide with the ground, cars, and stairs, and settle naturally. Getting-up animation if not dead. Blend from animation into ragdoll and back.
+
+════════ WATER (realistic) ════════
+- Ocean and river shader with multiple Gerstner wave layers, correct normals, fresnel reflection of the sky and skyline, refraction and depth color (murky green-gray for the river and harbor, blue-green at the beach), animated foam at shores, piers, and boat wakes, sun glints, and wave crests that catch light. Waves roll onto the beach and wash up the sand with a darker wet-sand line.
+- Buoyancy: cars that drive into the water float briefly, tilt, and sink. The player can swim (animation, stamina) and dive. Splash particles on entry. Boats use the same buoyancy and leave wakes.
+- Underwater: tinted fog, caustics on the floor, muffled audio.
+
+════════ LIGHTING, SHADERS & ATMOSPHERE (next-gen look) ════════
+- Dynamic time of day (a full day in about 24 real minutes, adjustable): physically based sky with Rayleigh/Mie scattering, sun and moon, stars, golden hour light that pours straight down the avenue grid (the "sun lines up with the streets" effect), and blue hour with the skyline lighting up.
+- High-quality cascaded shadows, SSAO, screen-space reflections on wet streets and glass, bloom, ACES tone mapping, depth of field, motion blur (toggleable), volumetric-looking light shafts between buildings, height fog, and steam from manholes lit by streetlights.
+- Physically based materials: car paint with clearcoat and metallic flake, glass that reflects the city, chrome, brick, concrete, asphalt with cracks and patched sections, wet surfaces with puddles that reflect neon.
+- Night: streetlights, car headlights and taillights as real light sources (nearest-N limit), LED billboards that cast colored light, lit windows with fake interiors (parallax interior mapping so windows show rooms with depth).
+- Weather: clear, overcast, rain (particles, splashes, wet reflective roads, lower grip, umbrellas on peds), heavy fog around the skyscraper tops, and snow (snowfall, snow collecting on roofs and cars, slippery roads, peds in winter coats). Weather changes over time.
+
+════════ VEHICLES (lots of cars, real physics) ════════
+- At least 18 distinct procedurally modeled vehicles with smooth curved bodies (no boxes): yellow taxi sedan, compact car, sedan, luxury sedan, sports car, supercar, muscle car, SUV, pickup truck, delivery van, box truck, city bus, police cruiser (working lightbar and siren), police SUV, ambulance, fire truck, garbage truck, food truck, motorcycle, and a bicycle / e-bike. Each has wheel wells, separate wheels that spin and steer, doors that open, glass, headlights, taillights, brake lights that light when braking, reverse lights, indicators, license plates (canvas text), and an interior with seats and a steering wheel.
+- Random paint colors, dirt and snow buildup, and body damage: dents (vertex deformation at impact points), shattered windows, bumpers, hoods, and doors that detach, engine smoke when heavily damaged, fire and explosion when destroyed (ragdolls nearby, burned-out shell remains).
+- VEHICLE PHYSICS (be precise):
+  - Weight and inertia: each vehicle has a mass and an inertia tensor. Heavy vehicles accelerate slowly, carry momentum, and take longer to stop. Light cars feel nimble.
+  - Suspension travel: 4 raycast wheels, each with spring stiffness, damping (separate bump and rebound), max travel, and anti-roll bars. The body visibly rolls in turns, dives forward under braking, squats under acceleration, and bounces over curbs, potholes, manhole covers, and speed bumps (put plenty of rough patches on the city roads). Cars react dynamically to sharp steering, never glued to the asphalt.
+  - Weight transfer: the load on each wheel changes with acceleration and cornering, and that load changes each tire's grip.
+  - Tire model: slip-angle and slip-ratio based (simplified Pacejka curve), so pushing too hard causes understeer or oversteer, and the handbrake (SPACE) locks the rear wheels to start a drift. Drifting is controllable with countersteer and throttle. Tire smoke and skid marks. Burnouts from a standstill.
+  - Drivetrain: RWD/FWD/AWD per vehicle, engine torque curve, automatic gearbox with audible shifts, top speed per class.
+  - Surface grip: dry asphalt, cobblestone, dirt, grass, sand, wet roads, snow and ice.
+  - Collisions between vehicles are impulse-based and use mass (a garbage truck shoves a compact car). Cars on their roof can be rolled back with A/D if stuck.
+  - Motorcycles lean into turns and can wheelie. Bicycles pedal with leg animation.
+- Car camera: chase camera with lag, look-behind (C), mouse orbit that recenters, hood / first-person cockpit view (V), speed-based FOV.
+
+════════ CARJACKING & ENTER/EXIT (with proper animations) ════════
+- Press F near a vehicle: the character walks to the driver door, opens it (door swings on its hinge). If empty, they get in, close the door, and drive. If there is a driver, the character grabs them, pulls and throws them out onto the street (ragdoll-style tumble, then they get up), gets in, and drives off. The ejected driver reacts: flees, yells, calls the police, films you on their phone, or fights back.
+- Press F again while stopped to exit. Exiting at speed makes the character bail and roll.
+- Locked parked cars: elbow the window (glass shatters), then hotwire (short animation).
+- Hail a taxi (hold a key, arm raised) and ride it to a waypoint, or skip the ride.
+- Stealing a car in front of witnesses or police raises the wanted level.
+
+════════ WEAPONS & WEAPON WHEEL ════════
+- Hold TAB (or Q) to open a radial weapon wheel that slows time, with categories, ALL unlocked with ammo to test: Fists, Knife, Baseball Bat, Pistol, Heavy Pistol, Revolver, Micro SMG, SMG, Assault Rifle, Carbine Rifle, Pump Shotgun, Sawed-off Shotgun, Sniper Rifle (scope, bullet drop, travel time), Minigun, Grenade, Molotov (fire spreads on the ground), Sticky Bomb (detonate with G), Taser, and Rocket Launcher (visible rocket, smoke trail, huge explosion that flips and destroys cars and ragdolls peds). Mouse wheel cycles within a slot.
+- Each weapon has a procedurally modeled mesh resembling its real counterpart, is held correctly with both hands via arm IK, and has correct fire rate, damage, spread, recoil, magazine, reload animation and time.
+- Aim with right mouse (over-the-shoulder camera tightens, swap shoulders with X), free aim reticle, hit reactions by body part (leg shot stumbles, headshot kills), tasteful blood decals, bullet impacts with sparks, dust, brick chips, and glass shards per surface, muzzle flash, tracers, shell casings, explosions with fireball, smoke column, shockwave, debris, scorch decal, camera shake, and physics impulse on nearby objects.
+- Melee: punch and kick combos, bat swings with knockdown, takedowns from behind.
+- Street props (lamp posts, hydrants that spray water, parking meters, newsstands, food carts, trash cans, scaffolding poles, bikes) are knocked over by cars and explosions with physics.
+
+════════ CROWD AI (the city must feel alive) ════════
+- Dense sidewalks in Midtown (the busiest crowds you can manage, with impostors at distance), quieter in the town. Pedestrians walk on sidewalks using a navigation graph, wait at crosswalks, cross on the walk signal (some jaywalk), go in and out of shops and buildings, ride the subway, sit on stoops and benches, chat in groups with gestures, argue, talk on phones, take selfies at landmarks, walk dogs (procedurally modeled dogs with a 4-leg gait), queue at food carts and eat, play basketball, skateboard, busk and perform with small crowds watching, work construction, deliver food on e-bikes, picnic and jog in the park, sunbathe, swim, and ride rides at the beach, pump gas and sit in the diner in the town.
+- Reactions: gunshots cause screaming and fleeing away from the source, taking cover, cowering. Many peds pull out phones and record (their videos show up on the in-game social feed, see Phone). Tough peds fight back or pull guns. Bumping someone makes them shove or complain. A car on the sidewalk makes them dive out of the way. Seeing a body makes them scream and run.
+- Traffic AI: cars follow lanes, obey traffic lights, keep distance, change lanes, turn at intersections, honk when blocked (New York style), taxis pull over to pick up peds, buses stop at bus stops, delivery trucks double park with hazards on and traffic goes around them, cars swerve to avoid the player, speed off from gunfire, and pull over for sirens. Traffic density varies by region and time of day, with rush-hour jams in Midtown.
+- Voice barks: synthesized vocal-like sounds (formant synthesis) for screams, shouts, grunts, and street chatter murmur.
+
+════════ WANTED SYSTEM & POLICE ════════
+- 5 star wanted level. Crimes raise stars: carjacking, hitting peds, shooting, killing, attacking police. Police respond with cruisers and SUVs that chase with sirens, PIT maneuvers, roadblocks and spike strips at higher levels, officers on foot who take cover and flank, a helicopter at 3+ stars with a searchlight at night, and bridge closures at 5 stars.
+- Line-of-sight search: when out of police view, stars flash and a search area shows on the minimap; hide (alleys, subway, parking garages, changing cars) to lose them.
+- Busted and Wasted screens (desaturated slow motion with big text), respawn at a hospital or precinct.
+
+════════ PLAYER ON FOOT ════════
+- WASD move (correct directions), SHIFT sprint with stamina, CTRL crouch/stealth, SPACE jump and climb/vault over fences and walls, F enter/exit vehicles, R reload, left click shoot/punch, right click aim, TAB weapon wheel, E interact / take cover (snap to walls and peek), C look behind, V camera mode, X switch shoulder, Z switch protagonist, M map, UP ARROW phone, ESC pause.
+- Third-person camera behind the shoulder that collides with walls, smooth follow, mouse orbit.
+- Health and armor, health regeneration up to half, fall damage, stamina.
+
+════════ HUD, MAP, PHONE & UI ════════
+- Title screen with a GTA VI style look: bold stylized illustrated splash art of the two protagonists composed procedurally on canvas (thick outlines, sunset gradient, the skyline behind them), a slow animated pan, the title, and rotating loading tips.
+- Minimap (bottom left) that rotates with the player, shows roads, subway stations, a GPS route to a waypoint (right click on the full map to place; route follows roads with A* on the road graph), health and armor under it, and police blips.
+- Full pause map with neighborhood names, zoom and pan, legend, and fast-travel subway stops.
+- Money, wanted stars, weapon and ammo, neighborhood and street name popups when entering a new area, vehicle name popup when entering a car.
+- Phone with working apps: camera (photo mode with filters and selfie), a social media feed that fills with posts and videos peds "filmed" of the player's chaos (generated captions and thumbnails rendered from the game camera), contacts (call a taxi that drives to you, call the partner protagonist), a map app, and a cheat input (spawn a car, give all weapons, change weather, change time).
+- Settings: mouse sensitivity, invert Y (off), FOV, volume sliders, graphics preset, time-of-day speed, traffic and crowd density, motion blur toggle, show FPS. Saved to localStorage (wrapped in try/catch).
+
+════════ AUDIO (all synthesized) ════════
+- Engine sounds per vehicle class (layered oscillators with RPM pitch, gear shifts, exhaust pops), tire squeal, collision crunches scaled by impulse, glass shatter, police sirens (wail, yelp, horn blasts), fire truck horns, taxi and traffic honking, subway train rumble, brake screech, and door chime, gun sounds per weapon with distance echo that bounces between skyscrapers and indoor/outdoor reverb, rocket and explosion booms, fire crackle, footsteps per surface, harbor foghorns and seagulls, ocean waves at the beach, roller coaster clacks and screams, park birds, city ambience (distant sirens, crowd murmur, jackhammers), rain, thunder, wind at height, and a car radio with several procedurally generated station styles (switch with a key).
+
+════════ STRETCH ════════
+- Ferries you can ride, boats and jet skis with buoyancy, a helicopter with flight physics for flying between skyscrapers.
+- Enterable interiors: a bodega, a subway station concourse, a diner, an apartment.
+- Store robberies with the two protagonists (one holds the door, one grabs the cash).
+- Simple missions (getaway chase, deliver a car across the bridge, street race through Midtown).
+- Clothing store to change outfits, barbershop to change hair.
+- Rooftop access and parkour across rooftops.
+
+Before finishing, re-read the NON-NEGOTIABLE CORRECTNESS RULES and fix anything that violates them. Output the full HTML file only.
